@@ -20,20 +20,34 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 /**
  * Fetches all coding problems from database
- * Sorted by difficulty (Easy -> Medium -> Hard)
+ * Sorted by difficulty (Easy -> Medium -> Hard) then by title
  */
 export async function getProblems() {
   const { data, error } = await supabase
     .from('problems')
     .select('*')
-    .order('difficulty', { ascending: true });
+    .order('difficulty', { ascending: true })
+    .order('title', { ascending: true });
 
   if (error) {
     console.error('Error fetching problems:', error);
     throw error;
   }
 
-  return data;
+  // Custom sort to ensure Easy -> Medium -> Hard order
+  const difficultyOrder = { 'Easy': 1, 'Medium': 2, 'Hard': 3 };
+  
+  return data.sort((a, b) => {
+    const diffA = difficultyOrder[a.difficulty as keyof typeof difficultyOrder] || 999;
+    const diffB = difficultyOrder[b.difficulty as keyof typeof difficultyOrder] || 999;
+    
+    if (diffA !== diffB) {
+      return diffA - diffB;
+    }
+    
+    // If same difficulty, sort by title
+    return a.title.localeCompare(b.title);
+  });
 }
 
 /**

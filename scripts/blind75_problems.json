@@ -1,0 +1,376 @@
+[
+  {
+    "title": "Two Sum",
+    "difficulty": "Easy",
+    "topics": ["Array", "Hash Table"],
+    "companies": ["Amazon", "Google", "Microsoft", "Facebook"],
+    "description": "Given an array of integers and a target sum, find the indices of two numbers that add up to the target.\n\nYou may assume each input has exactly one solution, and you cannot use the same element twice.\n\nExample 1:\nInput: nums = [2, 7, 11, 15], target = 9\nOutput: [0, 1]\nExplanation: nums[0] + nums[1] = 2 + 7 = 9\n\nExample 2:\nInput: nums = [3, 2, 4], target = 6\nOutput: [1, 2]",
+    "starter_code": {
+      "python": "def two_sum(nums, target):\n    \"\"\"\n    :type nums: List[int]\n    :type target: int\n    :rtype: List[int]\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "function twoSum(nums, target) {\n    /**\n     * @param {number[]} nums\n     * @param {number} target\n     * @return {number[]}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "Contains Duplicate",
+    "difficulty": "Easy",
+    "topics": ["Array", "Hash Table"],
+    "companies": ["Amazon", "Apple", "Bloomberg"],
+    "description": "Given an integer array, return true if any value appears at least twice in the array, and return false if every element is distinct.\n\nExample 1:\nInput: nums = [1, 2, 3, 1]\nOutput: true\n\nExample 2:\nInput: nums = [1, 2, 3, 4]\nOutput: false\n\nExample 3:\nInput: nums = [1, 1, 1, 3, 3, 4, 3, 2, 4, 2]\nOutput: true",
+    "starter_code": {
+      "python": "def contains_duplicate(nums):\n    \"\"\"\n    :type nums: List[int]\n    :rtype: bool\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "function containsDuplicate(nums) {\n    /**\n     * @param {number[]} nums\n     * @return {boolean}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "Best Time to Buy and Sell Stock",
+    "difficulty": "Easy",
+    "topics": ["Array", "Dynamic Programming"],
+    "companies": ["Amazon", "Google", "Microsoft", "Facebook"],
+    "description": "You are given an array of prices where prices[i] represents the stock price on day i.\n\nYou want to maximize profit by buying on one day and selling on a different future day.\n\nReturn the maximum profit you can achieve. If no profit is possible, return 0.\n\nExample 1:\nInput: prices = [7, 1, 5, 3, 6, 4]\nOutput: 5\nExplanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6 - 1 = 5\n\nExample 2:\nInput: prices = [7, 6, 4, 3, 1]\nOutput: 0\nExplanation: No profit possible, so return 0",
+    "starter_code": {
+      "python": "def max_profit(prices):\n    \"\"\"\n    :type prices: List[int]\n    :rtype: int\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "function maxProfit(prices) {\n    /**\n     * @param {number[]} prices\n     * @return {number}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "Valid Anagram",
+    "difficulty": "Easy",
+    "topics": ["String", "Hash Table", "Sorting"],
+    "companies": ["Amazon", "Facebook", "Google"],
+    "description": "Given two strings s and t, return true if t is an anagram of s, and false otherwise.\n\nAn anagram is a word formed by rearranging the letters of another word, using all original letters exactly once.\n\nExample 1:\nInput: s = \"anagram\", t = \"nagaram\"\nOutput: true\n\nExample 2:\nInput: s = \"rat\", t = \"car\"\nOutput: false",
+    "starter_code": {
+      "python": "def is_anagram(s, t):\n    \"\"\"\n    :type s: str\n    :type t: str\n    :rtype: bool\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "function isAnagram(s, t) {\n    /**\n     * @param {string} s\n     * @param {string} t\n     * @return {boolean}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "Valid Parentheses",
+    "difficulty": "Easy",
+    "topics": ["String", "Stack"],
+    "companies": ["Amazon", "Microsoft", "Bloomberg", "Facebook"],
+    "description": "Given a string containing only the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.\n\nA string is valid if:\n1. Open brackets are closed by the same type of brackets\n2. Open brackets are closed in the correct order\n3. Every close bracket has a corresponding open bracket\n\nExample 1:\nInput: s = \"()\"\nOutput: true\n\nExample 2:\nInput: s = \"()[]{}\"\nOutput: true\n\nExample 3:\nInput: s = \"(]\"\nOutput: false",
+    "starter_code": {
+      "python": "def is_valid(s):\n    \"\"\"\n    :type s: str\n    :rtype: bool\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "function isValid(s) {\n    /**\n     * @param {string} s\n     * @return {boolean}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "Product of Array Except Self",
+    "difficulty": "Medium",
+    "topics": ["Array", "Prefix Sum"],
+    "companies": ["Amazon", "Microsoft", "Facebook", "Apple"],
+    "description": "Given an integer array nums, return an array output where output[i] equals the product of all elements of nums except nums[i].\n\nYou must solve it without using division and in O(n) time.\n\nExample 1:\nInput: nums = [1, 2, 3, 4]\nOutput: [24, 12, 8, 6]\n\nExample 2:\nInput: nums = [-1, 1, 0, -3, 3]\nOutput: [0, 0, 9, 0, 0]",
+    "starter_code": {
+      "python": "def product_except_self(nums):\n    \"\"\"\n    :type nums: List[int]\n    :rtype: List[int]\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "function productExceptSelf(nums) {\n    /**\n     * @param {number[]} nums\n     * @return {number[]}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "Maximum Subarray",
+    "difficulty": "Medium",
+    "topics": ["Array", "Dynamic Programming", "Divide and Conquer"],
+    "companies": ["Amazon", "Microsoft", "LinkedIn", "Bloomberg"],
+    "description": "Given an integer array nums, find the contiguous subarray with the largest sum and return its sum.\n\nExample 1:\nInput: nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]\nOutput: 6\nExplanation: The subarray [4, -1, 2, 1] has the largest sum of 6\n\nExample 2:\nInput: nums = [1]\nOutput: 1\n\nExample 3:\nInput: nums = [5, 4, -1, 7, 8]\nOutput: 23",
+    "starter_code": {
+      "python": "def max_subarray(nums):\n    \"\"\"\n    :type nums: List[int]\n    :rtype: int\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "function maxSubArray(nums) {\n    /**\n     * @param {number[]} nums\n     * @return {number}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "3Sum",
+    "difficulty": "Medium",
+    "topics": ["Array", "Two Pointers", "Sorting"],
+    "companies": ["Amazon", "Facebook", "Microsoft", "Google"],
+    "description": "Given an integer array nums, return all unique triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.\n\nThe solution set must not contain duplicate triplets.\n\nExample 1:\nInput: nums = [-1, 0, 1, 2, -1, -4]\nOutput: [[-1, -1, 2], [-1, 0, 1]]\n\nExample 2:\nInput: nums = [0, 1, 1]\nOutput: []\n\nExample 3:\nInput: nums = [0, 0, 0]\nOutput: [[0, 0, 0]]",
+    "starter_code": {
+      "python": "def three_sum(nums):\n    \"\"\"\n    :type nums: List[int]\n    :rtype: List[List[int]]\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "function threeSum(nums) {\n    /**\n     * @param {number[]} nums\n     * @return {number[][]}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "Container With Most Water",
+    "difficulty": "Medium",
+    "topics": ["Array", "Two Pointers", "Greedy"],
+    "companies": ["Amazon", "Facebook", "Bloomberg", "Adobe"],
+    "description": "You are given an array of integers height where height[i] represents the height of a vertical line at position i.\n\nFind two lines that together with the x-axis form a container that holds the most water.\n\nReturn the maximum amount of water a container can store.\n\nExample 1:\nInput: height = [1, 8, 6, 2, 5, 4, 8, 3, 7]\nOutput: 49\nExplanation: The lines at index 1 and 8 form a container with area = 7 * 7 = 49\n\nExample 2:\nInput: height = [1, 1]\nOutput: 1",
+    "starter_code": {
+      "python": "def max_area(height):\n    \"\"\"\n    :type height: List[int]\n    :rtype: int\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "function maxArea(height) {\n    /**\n     * @param {number[]} height\n     * @return {number}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "Reverse Linked List",
+    "difficulty": "Easy",
+    "topics": ["Linked List", "Recursion"],
+    "companies": ["Amazon", "Microsoft", "Facebook", "Google"],
+    "description": "Given the head of a singly linked list, reverse the list and return the reversed list.\n\nExample 1:\nInput: head = [1, 2, 3, 4, 5]\nOutput: [5, 4, 3, 2, 1]\n\nExample 2:\nInput: head = [1, 2]\nOutput: [2, 1]\n\nExample 3:\nInput: head = []\nOutput: []",
+    "starter_code": {
+      "python": "# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, val=0, next=None):\n#         self.val = val\n#         self.next = next\n\ndef reverse_list(head):\n    \"\"\"\n    :type head: ListNode\n    :rtype: ListNode\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "/**\n * Definition for singly-linked list.\n * function ListNode(val, next) {\n *     this.val = (val===undefined ? 0 : val)\n *     this.next = (next===undefined ? null : next)\n * }\n */\nfunction reverseList(head) {\n    /**\n     * @param {ListNode} head\n     * @return {ListNode}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "Merge Two Sorted Lists",
+    "difficulty": "Easy",
+    "topics": ["Linked List", "Recursion"],
+    "companies": ["Amazon", "Microsoft", "Apple", "Adobe"],
+    "description": "You are given the heads of two sorted linked lists list1 and list2.\n\nMerge the two lists into one sorted list by splicing together the nodes of the two lists.\n\nReturn the head of the merged linked list.\n\nExample 1:\nInput: list1 = [1, 2, 4], list2 = [1, 3, 4]\nOutput: [1, 1, 2, 3, 4, 4]\n\nExample 2:\nInput: list1 = [], list2 = []\nOutput: []\n\nExample 3:\nInput: list1 = [], list2 = [0]\nOutput: [0]",
+    "starter_code": {
+      "python": "# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, val=0, next=None):\n#         self.val = val\n#         self.next = next\n\ndef merge_two_lists(list1, list2):\n    \"\"\"\n    :type list1: ListNode\n    :type list2: ListNode\n    :rtype: ListNode\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "/**\n * Definition for singly-linked list.\n * function ListNode(val, next) {\n *     this.val = (val===undefined ? 0 : val)\n *     this.next = (next===undefined ? null : next)\n * }\n */\nfunction mergeTwoLists(list1, list2) {\n    /**\n     * @param {ListNode} list1\n     * @param {ListNode} list2\n     * @return {ListNode}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "Linked List Cycle",
+    "difficulty": "Easy",
+    "topics": ["Linked List", "Two Pointers", "Hash Table"],
+    "companies": ["Amazon", "Microsoft", "Bloomberg", "Apple"],
+    "description": "Given the head of a linked list, determine if the linked list has a cycle in it.\n\nA cycle exists if a node can be reached again by continuously following the next pointer.\n\nReturn true if there is a cycle, otherwise return false.\n\nExample 1:\nInput: head = [3, 2, 0, -4], pos = 1 (cycle at index 1)\nOutput: true\n\nExample 2:\nInput: head = [1, 2], pos = 0 (cycle at index 0)\nOutput: true\n\nExample 3:\nInput: head = [1], pos = -1 (no cycle)\nOutput: false",
+    "starter_code": {
+      "python": "# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, val=0, next=None):\n#         self.val = val\n#         self.next = next\n\ndef has_cycle(head):\n    \"\"\"\n    :type head: ListNode\n    :rtype: bool\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\nfunction hasCycle(head) {\n    /**\n     * @param {ListNode} head\n     * @return {boolean}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "Merge K Sorted Lists",
+    "difficulty": "Hard",
+    "topics": ["Linked List", "Divide and Conquer", "Heap", "Merge Sort"],
+    "companies": ["Amazon", "Google", "Facebook", "Microsoft"],
+    "description": "You are given an array of k linked-lists lists, where each linked-list is sorted in ascending order.\n\nMerge all the linked-lists into one sorted linked-list and return it.\n\nExample 1:\nInput: lists = [[1, 4, 5], [1, 3, 4], [2, 6]]\nOutput: [1, 1, 2, 3, 4, 4, 5, 6]\n\nExample 2:\nInput: lists = []\nOutput: []\n\nExample 3:\nInput: lists = [[]]\nOutput: []",
+    "starter_code": {
+      "python": "# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, val=0, next=None):\n#         self.val = val\n#         self.next = next\n\ndef merge_k_lists(lists):\n    \"\"\"\n    :type lists: List[ListNode]\n    :rtype: ListNode\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "/**\n * Definition for singly-linked list.\n * function ListNode(val, next) {\n *     this.val = (val===undefined ? 0 : val)\n *     this.next = (next===undefined ? null : next)\n * }\n */\nfunction mergeKLists(lists) {\n    /**\n     * @param {ListNode[]} lists\n     * @return {ListNode}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "Invert Binary Tree",
+    "difficulty": "Easy",
+    "topics": ["Tree", "Depth-First Search", "Breadth-First Search", "Binary Tree"],
+    "companies": ["Amazon", "Google", "Microsoft", "Facebook"],
+    "description": "Given the root of a binary tree, invert the tree and return its root.\n\nInverting a tree means swapping the left and right children of all nodes.\n\nExample 1:\nInput: root = [4, 2, 7, 1, 3, 6, 9]\nOutput: [4, 7, 2, 9, 6, 3, 1]\n\nExample 2:\nInput: root = [2, 1, 3]\nOutput: [2, 3, 1]\n\nExample 3:\nInput: root = []\nOutput: []",
+    "starter_code": {
+      "python": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\n\ndef invert_tree(root):\n    \"\"\"\n    :type root: TreeNode\n    :rtype: TreeNode\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "/**\n * Definition for a binary tree node.\n * function TreeNode(val, left, right) {\n *     this.val = (val===undefined ? 0 : val)\n *     this.left = (left===undefined ? null : left)\n *     this.right = (right===undefined ? null : right)\n * }\n */\nfunction invertTree(root) {\n    /**\n     * @param {TreeNode} root\n     * @return {TreeNode}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "Maximum Depth of Binary Tree",
+    "difficulty": "Easy",
+    "topics": ["Tree", "Depth-First Search", "Breadth-First Search", "Binary Tree"],
+    "companies": ["Amazon", "LinkedIn", "Facebook", "Microsoft"],
+    "description": "Given the root of a binary tree, return its maximum depth.\n\nThe maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.\n\nExample 1:\nInput: root = [3, 9, 20, null, null, 15, 7]\nOutput: 3\n\nExample 2:\nInput: root = [1, null, 2]\nOutput: 2",
+    "starter_code": {
+      "python": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\n\ndef max_depth(root):\n    \"\"\"\n    :type root: TreeNode\n    :rtype: int\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "/**\n * Definition for a binary tree node.\n * function TreeNode(val, left, right) {\n *     this.val = (val===undefined ? 0 : val)\n *     this.left = (left===undefined ? null : left)\n *     this.right = (right===undefined ? null : right)\n * }\n */\nfunction maxDepth(root) {\n    /**\n     * @param {TreeNode} root\n     * @return {number}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "Same Tree",
+    "difficulty": "Easy",
+    "topics": ["Tree", "Depth-First Search", "Breadth-First Search", "Binary Tree"],
+    "companies": ["Amazon", "Bloomberg", "Facebook"],
+    "description": "Given the roots of two binary trees p and q, check if they are identical.\n\nTwo binary trees are considered identical if they are structurally identical and the nodes have the same value.\n\nExample 1:\nInput: p = [1, 2, 3], q = [1, 2, 3]\nOutput: true\n\nExample 2:\nInput: p = [1, 2], q = [1, null, 2]\nOutput: false\n\nExample 3:\nInput: p = [1, 2, 1], q = [1, 1, 2]\nOutput: false",
+    "starter_code": {
+      "python": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\n\ndef is_same_tree(p, q):\n    \"\"\"\n    :type p: TreeNode\n    :type q: TreeNode\n    :rtype: bool\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "/**\n * Definition for a binary tree node.\n * function TreeNode(val, left, right) {\n *     this.val = (val===undefined ? 0 : val)\n *     this.left = (left===undefined ? null : left)\n *     this.right = (right===undefined ? null : right)\n * }\n */\nfunction isSameTree(p, q) {\n    /**\n     * @param {TreeNode} p\n     * @param {TreeNode} q\n     * @return {boolean}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "Subtree of Another Tree",
+    "difficulty": "Easy",
+    "topics": ["Tree", "Depth-First Search", "Binary Tree", "String Matching", "Hash Function"],
+    "companies": ["Amazon", "Facebook", "Microsoft"],
+    "description": "Given the roots of two binary trees root and subRoot, return true if there is a subtree of root with the same structure and node values as subRoot, and false otherwise.\n\nA subtree of a binary tree is a tree that consists of a node in the tree and all of this node's descendants.\n\nExample 1:\nInput: root = [3, 4, 5, 1, 2], subRoot = [4, 1, 2]\nOutput: true\n\nExample 2:\nInput: root = [3, 4, 5, 1, 2, null, null, null, null, 0], subRoot = [4, 1, 2]\nOutput: false",
+    "starter_code": {
+      "python": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\n\ndef is_subtree(root, sub_root):\n    \"\"\"\n    :type root: TreeNode\n    :type sub_root: TreeNode\n    :rtype: bool\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "/**\n * Definition for a binary tree node.\n * function TreeNode(val, left, right) {\n *     this.val = (val===undefined ? 0 : val)\n *     this.left = (left===undefined ? null : left)\n *     this.right = (right===undefined ? null : right)\n * }\n */\nfunction isSubtree(root, subRoot) {\n    /**\n     * @param {TreeNode} root\n     * @param {TreeNode} subRoot\n     * @return {boolean}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "Lowest Common Ancestor of BST",
+    "difficulty": "Medium",
+    "topics": ["Tree", "Depth-First Search", "Binary Search Tree", "Binary Tree"],
+    "companies": ["Amazon", "Microsoft", "Facebook", "LinkedIn"],
+    "description": "Given a binary search tree (BST), find the lowest common ancestor (LCA) node of two given nodes in the BST.\n\nThe lowest common ancestor is the lowest node that has both nodes as descendants (where a node can be a descendant of itself).\n\nExample 1:\nInput: root = [6, 2, 8, 0, 4, 7, 9, null, null, 3, 5], p = 2, q = 8\nOutput: 6\nExplanation: The LCA of nodes 2 and 8 is 6\n\nExample 2:\nInput: root = [6, 2, 8, 0, 4, 7, 9, null, null, 3, 5], p = 2, q = 4\nOutput: 2\nExplanation: The LCA of nodes 2 and 4 is 2 (a node can be a descendant of itself)",
+    "starter_code": {
+      "python": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\n\ndef lowest_common_ancestor(root, p, q):\n    \"\"\"\n    :type root: TreeNode\n    :type p: TreeNode\n    :type q: TreeNode\n    :rtype: TreeNode\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\nfunction lowestCommonAncestor(root, p, q) {\n    /**\n     * @param {TreeNode} root\n     * @param {TreeNode} p\n     * @param {TreeNode} q\n     * @return {TreeNode}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "Binary Tree Level Order Traversal",
+    "difficulty": "Medium",
+    "topics": ["Tree", "Breadth-First Search", "Binary Tree"],
+    "companies": ["Amazon", "Microsoft", "Facebook", "Bloomberg"],
+    "description": "Given the root of a binary tree, return the level order traversal of its nodes' values (i.e., from left to right, level by level).\n\nExample 1:\nInput: root = [3, 9, 20, null, null, 15, 7]\nOutput: [[3], [9, 20], [15, 7]]\n\nExample 2:\nInput: root = [1]\nOutput: [[1]]\n\nExample 3:\nInput: root = []\nOutput: []",
+    "starter_code": {
+      "python": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\n\ndef level_order(root):\n    \"\"\"\n    :type root: TreeNode\n    :rtype: List[List[int]]\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "/**\n * Definition for a binary tree node.\n * function TreeNode(val, left, right) {\n *     this.val = (val===undefined ? 0 : val)\n *     this.left = (left===undefined ? null : left)\n *     this.right = (right===undefined ? null : right)\n * }\n */\nfunction levelOrder(root) {\n    /**\n     * @param {TreeNode} root\n     * @return {number[][]}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "Validate Binary Search Tree",
+    "difficulty": "Medium",
+    "topics": ["Tree", "Depth-First Search", "Binary Search Tree", "Binary Tree"],
+    "companies": ["Amazon", "Microsoft", "Facebook", "Bloomberg"],
+    "description": "Given the root of a binary tree, determine if it is a valid binary search tree (BST).\n\nA valid BST is defined as follows:\n- The left subtree of a node contains only nodes with keys less than the node's key\n- The right subtree of a node contains only nodes with keys greater than the node's key\n- Both the left and right subtrees must also be binary search trees\n\nExample 1:\nInput: root = [2, 1, 3]\nOutput: true\n\nExample 2:\nInput: root = [5, 1, 4, null, null, 3, 6]\nOutput: false\nExplanation: The root node's value is 5 but its right child's value is 4",
+    "starter_code": {
+      "python": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\n\ndef is_valid_bst(root):\n    \"\"\"\n    :type root: TreeNode\n    :rtype: bool\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "/**\n * Definition for a binary tree node.\n * function TreeNode(val, left, right) {\n *     this.val = (val===undefined ? 0 : val)\n *     this.left = (left===undefined ? null : left)\n *     this.right = (right===undefined ? null : right)\n * }\n */\nfunction isValidBST(root) {\n    /**\n     * @param {TreeNode} root\n     * @return {boolean}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "Climbing Stairs",
+    "difficulty": "Easy",
+    "topics": ["Math", "Dynamic Programming", "Memoization"],
+    "companies": ["Amazon", "Google", "Adobe", "Apple"],
+    "description": "You are climbing a staircase with n steps. Each time you can either climb 1 or 2 steps.\n\nIn how many distinct ways can you climb to the top?\n\nExample 1:\nInput: n = 2\nOutput: 2\nExplanation: There are two ways: 1+1 or 2\n\nExample 2:\nInput: n = 3\nOutput: 3\nExplanation: There are three ways: 1+1+1, 1+2, or 2+1",
+    "starter_code": {
+      "python": "def climb_stairs(n):\n    \"\"\"\n    :type n: int\n    :rtype: int\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "function climbStairs(n) {\n    /**\n     * @param {number} n\n     * @return {number}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "House Robber",
+    "difficulty": "Medium",
+    "topics": ["Array", "Dynamic Programming"],
+    "companies": ["Amazon", "Google", "LinkedIn", "Apple"],
+    "description": "You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed.\n\nAll houses are arranged in a line, and adjacent houses have security systems connected. If two adjacent houses are broken into on the same night, the police will be alerted.\n\nGiven an integer array nums representing the amount of money in each house, return the maximum amount you can rob without alerting the police.\n\nExample 1:\nInput: nums = [1, 2, 3, 1]\nOutput: 4\nExplanation: Rob house 1 (money = 1) and then rob house 3 (money = 3). Total = 1 + 3 = 4\n\nExample 2:\nInput: nums = [2, 7, 9, 3, 1]\nOutput: 12\nExplanation: Rob house 1 (money = 2), rob house 3 (money = 9) and rob house 5 (money = 1). Total = 2 + 9 + 1 = 12",
+    "starter_code": {
+      "python": "def rob(nums):\n    \"\"\"\n    :type nums: List[int]\n    :rtype: int\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "function rob(nums) {\n    /**\n     * @param {number[]} nums\n     * @return {number}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "Coin Change",
+    "difficulty": "Medium",
+    "topics": ["Array", "Dynamic Programming", "Breadth-First Search"],
+    "companies": ["Amazon", "Google", "Microsoft", "Facebook"],
+    "description": "You are given an integer array coins representing different denominations and an integer amount representing a total amount of money.\n\nReturn the fewest number of coins needed to make up that amount. If that amount cannot be made up, return -1.\n\nYou may assume that you have an infinite number of each coin.\n\nExample 1:\nInput: coins = [1, 2, 5], amount = 11\nOutput: 3\nExplanation: 11 = 5 + 5 + 1\n\nExample 2:\nInput: coins = [2], amount = 3\nOutput: -1\n\nExample 3:\nInput: coins = [1], amount = 0\nOutput: 0",
+    "starter_code": {
+      "python": "def coin_change(coins, amount):\n    \"\"\"\n    :type coins: List[int]\n    :type amount: int\n    :rtype: int\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "function coinChange(coins, amount) {\n    /**\n     * @param {number[]} coins\n     * @param {number} amount\n     * @return {number}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "Longest Increasing Subsequence",
+    "difficulty": "Medium",
+    "topics": ["Array", "Binary Search", "Dynamic Programming"],
+    "companies": ["Amazon", "Microsoft", "Google", "Facebook"],
+    "description": "Given an integer array nums, return the length of the longest strictly increasing subsequence.\n\nA subsequence is an array derived from another array by deleting some or no elements without changing the order of the remaining elements.\n\nExample 1:\nInput: nums = [10, 9, 2, 5, 3, 7, 101, 18]\nOutput: 4\nExplanation: The longest increasing subsequence is [2, 3, 7, 101], so the length is 4\n\nExample 2:\nInput: nums = [0, 1, 0, 3, 2, 3]\nOutput: 4\n\nExample 3:\nInput: nums = [7, 7, 7, 7, 7, 7, 7]\nOutput: 1",
+    "starter_code": {
+      "python": "def length_of_lis(nums):\n    \"\"\"\n    :type nums: List[int]\n    :rtype: int\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "function lengthOfLIS(nums) {\n    /**\n     * @param {number[]} nums\n     * @return {number}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "Number of 1 Bits",
+    "difficulty": "Easy",
+    "topics": ["Bit Manipulation", "Divide and Conquer"],
+    "companies": ["Amazon", "Apple", "Microsoft"],
+    "description": "Write a function that takes an unsigned integer and returns the number of '1' bits it has (also known as the Hamming weight).\n\nExample 1:\nInput: n = 11 (binary: 00000000000000000000000000001011)\nOutput: 3\nExplanation: The input has three '1' bits\n\nExample 2:\nInput: n = 128 (binary: 00000000000000000000000010000000)\nOutput: 1\n\nExample 3:\nInput: n = 2147483645 (binary: 01111111111111111111111111111101)\nOutput: 30",
+    "starter_code": {
+      "python": "def hamming_weight(n):\n    \"\"\"\n    :type n: int\n    :rtype: int\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "function hammingWeight(n) {\n    /**\n     * @param {number} n\n     * @return {number}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "Counting Bits",
+    "difficulty": "Easy",
+    "topics": ["Dynamic Programming", "Bit Manipulation"],
+    "companies": ["Amazon", "Google", "Apple"],
+    "description": "Given an integer n, return an array ans of length n + 1 such that for each i (0 <= i <= n), ans[i] is the number of 1's in the binary representation of i.\n\nExample 1:\nInput: n = 2\nOutput: [0, 1, 1]\nExplanation:\n0 --> 0\n1 --> 1\n2 --> 10\n\nExample 2:\nInput: n = 5\nOutput: [0, 1, 1, 2, 1, 2]\nExplanation:\n0 --> 0\n1 --> 1\n2 --> 10\n3 --> 11\n4 --> 100\n5 --> 101",
+    "starter_code": {
+      "python": "def count_bits(n):\n    \"\"\"\n    :type n: int\n    :rtype: List[int]\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "function countBits(n) {\n    /**\n     * @param {number} n\n     * @return {number[]}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "Missing Number",
+    "difficulty": "Easy",
+    "topics": ["Array", "Hash Table", "Math", "Bit Manipulation", "Sorting"],
+    "companies": ["Amazon", "Microsoft", "Facebook"],
+    "description": "Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range that is missing from the array.\n\nExample 1:\nInput: nums = [3, 0, 1]\nOutput: 2\nExplanation: n = 3 since there are 3 numbers, so all numbers are in the range [0, 3]. 2 is missing.\n\nExample 2:\nInput: nums = [0, 1]\nOutput: 2\n\nExample 3:\nInput: nums = [9, 6, 4, 2, 3, 5, 7, 0, 1]\nOutput: 8",
+    "starter_code": {
+      "python": "def missing_number(nums):\n    \"\"\"\n    :type nums: List[int]\n    :rtype: int\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "function missingNumber(nums) {\n    /**\n     * @param {number[]} nums\n     * @return {number}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "Reverse Bits",
+    "difficulty": "Easy",
+    "topics": ["Divide and Conquer", "Bit Manipulation"],
+    "companies": ["Amazon", "Apple", "Airbnb"],
+    "description": "Reverse the bits of a given 32-bit unsigned integer.\n\nExample 1:\nInput: n = 00000010100101000001111010011100\nOutput: 964176192 (00111001011110000010100101000000)\n\nExample 2:\nInput: n = 11111111111111111111111111111101\nOutput: 3221225471 (10111111111111111111111111111111)",
+    "starter_code": {
+      "python": "def reverse_bits(n):\n    \"\"\"\n    :type n: int\n    :rtype: int\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "function reverseBits(n) {\n    /**\n     * @param {number} n\n     * @return {number}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "Sum of Two Integers",
+    "difficulty": "Medium",
+    "topics": ["Math", "Bit Manipulation"],
+    "companies": ["Amazon", "Apple"],
+    "description": "Given two integers a and b, return the sum of the two integers without using the operators + and -.\n\nExample 1:\nInput: a = 1, b = 2\nOutput: 3\n\nExample 2:\nInput: a = 2, b = 3\nOutput: 5",
+    "starter_code": {
+      "python": "def get_sum(a, b):\n    \"\"\"\n    :type a: int\n    :type b: int\n    :rtype: int\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "function getSum(a, b) {\n    /**\n     * @param {number} a\n     * @param {number} b\n     * @return {number}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "Number of Islands",
+    "difficulty": "Medium",
+    "topics": ["Array", "Depth-First Search", "Breadth-First Search", "Union Find", "Matrix"],
+    "companies": ["Amazon", "Facebook", "Google", "Microsoft"],
+    "description": "Given an m x n 2D binary grid which represents a map of '1's (land) and '0's (water), return the number of islands.\n\nAn island is surrounded by water and formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are surrounded by water.\n\nExample 1:\nInput: grid = [\n  [\"1\",\"1\",\"1\",\"1\",\"0\"],\n  [\"1\",\"1\",\"0\",\"1\",\"0\"],\n  [\"1\",\"1\",\"0\",\"0\",\"0\"],\n  [\"0\",\"0\",\"0\",\"0\",\"0\"]\n]\nOutput: 1\n\nExample 2:\nInput: grid = [\n  [\"1\",\"1\",\"0\",\"0\",\"0\"],\n  [\"1\",\"1\",\"0\",\"0\",\"0\"],\n  [\"0\",\"0\",\"1\",\"0\",\"0\"],\n  [\"0\",\"0\",\"0\",\"1\",\"1\"]\n]\nOutput: 3",
+    "starter_code": {
+      "python": "def num_islands(grid):\n    \"\"\"\n    :type grid: List[List[str]]\n    :rtype: int\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "function numIslands(grid) {\n    /**\n     * @param {character[][]} grid\n     * @return {number}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "Clone Graph",
+    "difficulty": "Medium",
+    "topics": ["Hash Table", "Depth-First Search", "Breadth-First Search", "Graph"],
+    "companies": ["Amazon", "Facebook", "Google", "Microsoft"],
+    "description": "Given a reference of a node in a connected undirected graph, return a deep copy (clone) of the graph.\n\nEach node in the graph contains a value (int) and a list of its neighbors.\n\nExample:\nInput: adjList = [[2,4],[1,3],[2,4],[1,3]]\nOutput: [[2,4],[1,3],[2,4],[1,3]]\nExplanation: There are 4 nodes in the graph.",
+    "starter_code": {
+      "python": "# Definition for a Node.\n# class Node:\n#     def __init__(self, val = 0, neighbors = None):\n#         self.val = val\n#         self.neighbors = neighbors if neighbors is not None else []\n\ndef clone_graph(node):\n    \"\"\"\n    :type node: Node\n    :rtype: Node\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "/**\n * function Node(val, neighbors) {\n *    this.val = val === undefined ? 0 : val;\n *    this.neighbors = neighbors === undefined ? [] : neighbors;\n * };\n */\nfunction cloneGraph(node) {\n    /**\n     * @param {Node} node\n     * @return {Node}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "Course Schedule",
+    "difficulty": "Medium",
+    "topics": ["Depth-First Search", "Breadth-First Search", "Graph", "Topological Sort"],
+    "companies": ["Amazon", "Google", "Microsoft", "Facebook"],
+    "description": "There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1.\n\nYou are given an array prerequisites where prerequisites[i] = [ai, bi] indicates that you must take course bi first if you want to take course ai.\n\nReturn true if you can finish all courses. Otherwise, return false.\n\nExample 1:\nInput: numCourses = 2, prerequisites = [[1,0]]\nOutput: true\nExplanation: There are 2 courses. To take course 1 you must first take course 0.\n\nExample 2:\nInput: numCourses = 2, prerequisites = [[1,0],[0,1]]\nOutput: false\nExplanation: To take course 1 you must first take course 0, and vice versa (impossible cycle).",
+    "starter_code": {
+      "python": "def can_finish(num_courses, prerequisites):\n    \"\"\"\n    :type num_courses: int\n    :type prerequisites: List[List[int]]\n    :rtype: bool\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "function canFinish(numCourses, prerequisites) {\n    /**\n     * @param {number} numCourses\n     * @param {number[][]} prerequisites\n     * @return {boolean}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "Pacific Atlantic Water Flow",
+    "difficulty": "Medium",
+    "topics": ["Array", "Depth-First Search", "Breadth-First Search", "Matrix"],
+    "companies": ["Amazon", "Google", "Facebook"],
+    "description": "Given an m x n matrix of heights representing the height above sea level of each cell on an island, return a list of grid coordinates where water can flow to both the Pacific and Atlantic oceans.\n\nWater can flow from a cell to another adjacent cell (up, down, left, or right) if the adjacent cell's height is less than or equal to the current cell's height.\n\nThe Pacific ocean touches the left and top edges, while the Atlantic ocean touches the right and bottom edges.\n\nExample:\nInput: heights = [[1,2,2,3,5],[3,2,3,4,4],[2,4,5,3,1],[6,7,1,4,5],[5,1,1,2,4]]\nOutput: [[0,4],[1,3],[1,4],[2,2],[3,0],[3,1],[4,0]]",
+    "starter_code": {
+      "python": "def pacific_atlantic(heights):\n    \"\"\"\n    :type heights: List[List[int]]\n    :rtype: List[List[int]]\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "function pacificAtlantic(heights) {\n    /**\n     * @param {number[][]} heights\n     * @return {number[][]}\n     */\n    // Your code here\n}"
+    }
+  },
+  {
+    "title": "Longest Consecutive Sequence",
+    "difficulty": "Medium",
+    "topics": ["Array", "Hash Table", "Union Find"],
+    "companies": ["Amazon", "Google", "Facebook", "Microsoft"],
+    "description": "Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.\n\nYou must write an algorithm that runs in O(n) time.\n\nExample 1:\nInput: nums = [100, 4, 200, 1, 3, 2]\nOutput: 4\nExplanation: The longest consecutive sequence is [1, 2, 3, 4], so the length is 4\n\nExample 2:\nInput: nums = [0, 3, 7, 2, 5, 8, 4, 6, 0, 1]\nOutput: 9",
+    "starter_code": {
+      "python": "def longest_consecutive(nums):\n    \"\"\"\n    :type nums: List[int]\n    :rtype: int\n    \"\"\"\n    # Your code here\n    pass",
+      "javascript": "function longestConsecutive(nums) {\n    /**\n     * @param {number[]} nums\n     * @return {number}\n     */\n    // Your code here\n}"
+    }
+  }
+]
