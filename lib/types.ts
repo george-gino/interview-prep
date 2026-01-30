@@ -11,9 +11,29 @@ export interface Problem {
   starter_code: {
     python: string;
     javascript: string;
+    typescript: string;
+    java: string;
+    cpp: string;
+    go: string;
+    rust: string;
   };
   created_at: string;
 }
+
+/**
+ * Supported programming languages
+ */
+export const LANGUAGES = {
+  python: { name: 'Python', icon: '🐍', monaco: 'python' },
+  javascript: { name: 'JavaScript', icon: '🟨', monaco: 'javascript' },
+  typescript: { name: 'TypeScript', icon: '🔷', monaco: 'typescript' },
+  java: { name: 'Java', icon: '☕', monaco: 'java' },
+  cpp: { name: 'C++', icon: '⚡', monaco: 'cpp' },
+  go: { name: 'Go', icon: '🐹', monaco: 'go' },
+  rust: { name: 'Rust', icon: '🦀', monaco: 'rust' },
+} as const;
+
+export type LanguageKey = keyof typeof LANGUAGES;
 
 /**
  * Represents a completed interview session

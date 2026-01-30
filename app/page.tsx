@@ -5,8 +5,9 @@ import { useRouter } from 'next/navigation';
 import ProblemSelector from '@/components/ProblemSelector';
 import CodeEditor from '@/components/CodeEditor';
 import AudioRecorder from '@/components/AudioRecorder';
+import LanguageSelector from '@/components/LanguageSelector';
 import { getProblems, createSession, updateSession } from '@/lib/supabase';
-import { Problem } from '@/lib/types';
+import { Problem, LanguageKey, LANGUAGES } from '@/lib/types';
 
 /**
  * Main interview practice page
@@ -20,7 +21,7 @@ export default function InterviewPage() {
   // State management
   const [problems, setProblems] = useState<Problem[]>([]);
   const [selectedProblem, setSelectedProblem] = useState<Problem | null>(null);
-  const [language, setLanguage] = useState<'python' | 'javascript'>('python');
+  const [language, setLanguage] = useState<LanguageKey>('python');
   const [code, setCode] = useState('');
   const [isRecording, setIsRecording] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -51,7 +52,11 @@ export default function InterviewPage() {
    */
   useEffect(() => {
     if (selectedProblem) {
-      setCode(selectedProblem.starter_code[language]);
+      // Get starter code for selected language, fallback to Python if not available
+      const starterCode = selectedProblem.starter_code[language] || 
+                         selectedProblem.starter_code.python || 
+                         '// Starter code not available for this language';
+      setCode(starterCode);
     }
   }, [selectedProblem, language]);
 
@@ -203,31 +208,10 @@ export default function InterviewPage() {
         {/* Language Selector */}
         {selectedProblem && (
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Programming Language
-            </label>
-            <div className="flex gap-3">
-              <button
-                onClick={() => setLanguage('python')}
-                className={`px-4 py-2 rounded-lg transition ${
-                  language === 'python'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                }`}
-              >
-                Python
-              </button>
-              <button
-                onClick={() => setLanguage('javascript')}
-                className={`px-4 py-2 rounded-lg transition ${
-                  language === 'javascript'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                }`}
-              >
-                JavaScript
-              </button>
-            </div>
+            <LanguageSelector
+              value={language}
+              onChange={setLanguage}
+            />
           </div>
         )}
 
@@ -235,7 +219,7 @@ export default function InterviewPage() {
         {selectedProblem && (
           <div className="mb-6 h-96">
             <CodeEditor
-              language={language}
+              language={LANGUAGES[language].monaco}
               value={code}
               onChange={setCode}
             />
