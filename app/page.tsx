@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import ProblemSelector from '@/components/ProblemSelector';
 import CodeEditor from '@/components/CodeEditor';
@@ -24,7 +24,7 @@ export default function InterviewPage() {
   const [code, setCode] = useState('');
   const [isRecording, setIsRecording] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [startTime, setStartTime] = useState<number | null>(null);
+  const startTimeRef = useRef<number | null>(null); // Use ref to avoid stale closures
   
   const router = useRouter();
 
@@ -64,7 +64,7 @@ export default function InterviewPage() {
       // Starting interview - record start time
       const now = Date.now();
       console.log('⏱️ Setting start time:', now);
-      setStartTime(now);
+      startTimeRef.current = now; // Store in ref for immediate access
       setIsRecording(true);
       console.log('✅ Recording state set to true');
     } else {
@@ -86,7 +86,7 @@ export default function InterviewPage() {
   async function handleRecordingComplete(blob: Blob) {
     console.log('🎤 handleRecordingComplete called');
     console.log('  Selected problem:', selectedProblem?.title || 'NONE');
-    console.log('  Start time:', startTime || 'NONE');
+    console.log('  Start time:', startTimeRef.current || 'NONE');
     console.log('  Blob size:', blob.size, 'bytes');
     
     if (!selectedProblem) {
@@ -95,7 +95,7 @@ export default function InterviewPage() {
       return;
     }
     
-    if (!startTime) {
+    if (!startTimeRef.current) {
       console.error('❌ No start time! This should not happen.');
       alert('Recording error: start time not set. Please try again.');
       return;
@@ -110,7 +110,7 @@ export default function InterviewPage() {
     
     try {
       // Calculate interview duration
-      const durationSeconds = Math.floor((Date.now() - startTime) / 1000);
+      const durationSeconds = Math.floor((Date.now() - startTimeRef.current) / 1000);
       console.log('  Duration:', durationSeconds, 'seconds');
 
       // Step 1: Save initial session to database
@@ -252,9 +252,9 @@ export default function InterviewPage() {
             />
             
             {/* Timer Display */}
-            {isRecording && startTime && (
+            {isRecording && startTimeRef.current && (
               <span className="text-gray-600 font-mono">
-                Time: {Math.floor((Date.now() - startTime) / 1000)}s
+                Time: {Math.floor((Date.now() - startTimeRef.current) / 1000)}s
               </span>
             )}
           </div>
