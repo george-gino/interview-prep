@@ -1,5 +1,5 @@
 import { getSession } from '@/lib/supabase';
-import CodeEditor from '@/components/CodeEditor';
+import CodeDisplay from '@/components/CodeDisplay';
 import FeedbackDisplay from '@/components/FeedbackDisplay';
 import Link from 'next/link';
 
@@ -49,11 +49,9 @@ export default async function SessionPage({
         <div className="mb-8">
           <h2 className="text-2xl font-semibold mb-4">Your Code</h2>
           <div className="h-96">
-            <CodeEditor
+            <CodeDisplay
               language={session.language}
               value={session.code}
-              onChange={() => {}} // No-op for read-only
-              readOnly={true}
             />
           </div>
         </div>
