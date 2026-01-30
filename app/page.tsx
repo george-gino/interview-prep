@@ -62,10 +62,14 @@ export default function InterviewPage() {
   function handleToggleRecording() {
     if (!isRecording) {
       // Starting interview - record start time
-      setStartTime(Date.now());
+      const now = Date.now();
+      console.log('⏱️ Setting start time:', now);
+      setStartTime(now);
       setIsRecording(true);
+      console.log('✅ Recording state set to true');
     } else {
       // Stopping interview (actual recording stop handled by AudioRecorder)
+      console.log('⏸️ Setting recording state to false');
       setIsRecording(false);
     }
   }
@@ -80,16 +84,27 @@ export default function InterviewPage() {
    * 5. Navigate to results page
    */
   async function handleRecordingComplete(blob: Blob) {
-    if (!selectedProblem || !startTime) {
-      console.error('Missing problem or start time');
+    console.log('🎤 handleRecordingComplete called');
+    console.log('  Selected problem:', selectedProblem?.title || 'NONE');
+    console.log('  Start time:', startTime || 'NONE');
+    console.log('  Blob size:', blob.size, 'bytes');
+    
+    if (!selectedProblem) {
+      console.error('❌ No problem selected!');
+      alert('Please select a problem before recording.');
+      return;
+    }
+    
+    if (!startTime) {
+      console.error('❌ No start time! This should not happen.');
+      alert('Recording error: start time not set. Please try again.');
       return;
     }
 
-    console.log('🎤 Processing recording...');
+    console.log('✅ Validation passed, processing recording...');
     console.log('  Problem:', selectedProblem.title);
     console.log('  Language:', language);
     console.log('  Code length:', code.length);
-    console.log('  Blob size:', blob.size, 'bytes');
     
     setIsProcessing(true);
     
