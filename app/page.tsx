@@ -109,10 +109,22 @@ export default function InterviewPage() {
 
       console.log('✅ Session created:', session.id);
 
-      // Step 2: Extract transcript from blob (Web Speech API already transcribed it!)
-      console.log('📝 Extracting transcript...');
-      const transcript = await blob.text();
-      console.log('✅ Transcript extracted:', transcript.length, 'characters');
+      // Step 2: Transcribe audio using OpenAI Whisper
+      console.log('📝 Transcribing audio with Whisper...');
+      const formData = new FormData();
+      formData.append('audio', blob, 'recording.webm');
+      
+      const transcribeResponse = await fetch('/api/transcribe', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!transcribeResponse.ok) {
+        throw new Error('Transcription failed');
+      }
+
+      const { transcript } = await transcribeResponse.json();
+      console.log('✅ Transcription complete:', transcript.length, 'characters');
       console.log('  First 100 chars:', transcript.substring(0, 100));
       
       // Check if we have a transcript
