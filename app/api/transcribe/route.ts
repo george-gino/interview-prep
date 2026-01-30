@@ -1,12 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import OpenAI from 'openai';
+import { createClient } from '@deepgram/sdk';
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+const deepgram = createClient(process.env.DEEPGRAM_API_KEY!);
 
 /**
- * API route to transcribe audio using OpenAI Whisper
+ * API route to transcribe audio using Deepgram
  * Accepts audio file via FormData and returns transcript text
  */
 export async function POST(request: NextRequest) {
@@ -21,18 +19,39 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    console.log('🎤 Transcribing audio file:', audioFile.name, audioFile.size, 'bytes');
+    console.log('🎤 Transcribing audio with Deepgram:', audioFile.name, audioFile.size, 'bytes');
 
-    // Send audio to OpenAI Whisper for transcription
-    const transcription = await openai.audio.transcriptions.create({
-      file: audioFile,
-      model: 'whisper-1',
-    });
+    // Convert file to buffer
+    const audioBuffer = await audioFile.arrayBuffer();
+    const buffer = Buffer.from(audioBuffer);
 
-    console.log('✅ Transcription complete:', transcription.text.length, 'characters');
+    // Send audio to Deepgram for transcription
+    const { result, error } = await deepgram.listen.prerecorded.transcribeFile(
+      buffer,
+      {
+        model: 'nova-2',
+        smart_format: true,
+        punctuate: true,
+        utterances: true,
+      }
+    );
+
+    if (error) {
+      console.error('❌ Deepgram error:', error);
+      return NextResponse.json(
+        { error: 'Transcription failed' },
+        { status: 500 }
+      );
+    }
+
+    // Extract transcript from Deepgram response
+    const transcript = result.results.channels[0].alternatives[0].transcript;
+    
+    console.log('✅ Transcription complete:', transcript.length, 'characters');
+    console.log('   Confidence:', result.results.channels[0].alternatives[0].confidence);
 
     return NextResponse.json({
-      transcript: transcription.text,
+      transcript,
     });
     
   } catch (error) {

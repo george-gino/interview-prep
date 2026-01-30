@@ -66,10 +66,10 @@ interview-prep/
 
 - ✅ Select coding problem from dropdown
 - ✅ Monaco code editor with language switching (Python/JavaScript)
-- ✅ Speech-to-text while coding (FREE Web Speech API)
+- ✅ Audio recording with high-quality transcription (Deepgram)
 - ✅ AI feedback generation (OpenAI GPT-4)
 - ✅ View past sessions
-- ✅ Zero-cost transcription!
+- ✅ Professional-grade transcription
 
 ## 🧪 Testing Locally
 
@@ -95,12 +95,12 @@ Vercel automatically provides HTTPS, which is required for audio recording.
 ## 💰 Cost Estimates
 
 Per interview session:
-- Web Speech API (transcription): **$0 (FREE!)**
+- Deepgram transcription: ~$0.0043/minute (~$0.05 for 10 min)
 - OpenAI GPT-4 feedback: ~$0.05-0.10
 - Supabase storage: ~$0.01
-- **Total: ~$0.06-0.11 per session** 🎉
+- **Total: ~$0.11-0.16 per session**
 
-**That's 20x cheaper than the original plan!**
+**Very affordable for high-quality transcription!**
 
 ## 🐛 Troubleshooting
 
