@@ -1,12 +1,5 @@
 import type { Metadata } from 'next';
-import { Space_Grotesk } from 'next/font/google';
 import './globals.css';
-
-const spaceGrotesk = Space_Grotesk({ 
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-space-grotesk',
-});
 
 export const metadata: Metadata = {
   title: 'AI Interview Practice',
@@ -19,8 +12,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`bg-gray-900 ${spaceGrotesk.variable}`}>
-      <body className={`bg-gray-900 font-sans ${spaceGrotesk.className}`}>{children}</body>
+    <html lang="en" className="bg-gray-900">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+      </head>
+      <body className="bg-gray-900 font-jetbrains">{children}</body>
     </html>
   );
 }
