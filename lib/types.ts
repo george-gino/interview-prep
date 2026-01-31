@@ -24,13 +24,13 @@ export interface Problem {
  * Supported programming languages
  */
 export const LANGUAGES = {
-  python: { name: 'Python', icon: '🐍', monaco: 'python' },
-  javascript: { name: 'JavaScript', icon: '🟨', monaco: 'javascript' },
-  typescript: { name: 'TypeScript', icon: '🔷', monaco: 'typescript' },
-  java: { name: 'Java', icon: '☕', monaco: 'java' },
-  cpp: { name: 'C++', icon: '⚡', monaco: 'cpp' },
-  go: { name: 'Go', icon: '🐹', monaco: 'go' },
-  rust: { name: 'Rust', icon: '🦀', monaco: 'rust' },
+  python: { name: 'Python', color: '#3776AB', monaco: 'python' },
+  javascript: { name: 'JavaScript', color: '#F7DF1E', monaco: 'javascript' },
+  typescript: { name: 'TypeScript', color: '#3178C6', monaco: 'typescript' },
+  java: { name: 'Java', color: '#007396', monaco: 'java' },
+  cpp: { name: 'C++', color: '#00599C', monaco: 'cpp' },
+  go: { name: 'Go', color: '#00ADD8', monaco: 'go' },
+  rust: { name: 'Rust', color: '#CE412B', monaco: 'rust' },
 } as const;
 
 export type LanguageKey = keyof typeof LANGUAGES;

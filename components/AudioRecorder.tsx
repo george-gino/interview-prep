@@ -22,12 +22,12 @@ export default function AudioRecorder({
    */
   const startRecording = async () => {
     try {
-      console.log('🎤 Requesting microphone access...');
+      console.log('[AUDIO] Requesting microphone access...');
       
       // Request microphone access from browser
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       
-      console.log('✅ Microphone access granted');
+      console.log('[AUDIO] Microphone access granted');
       
       // Create MediaRecorder to capture audio
       const mediaRecorder = new MediaRecorder(stream);
@@ -38,29 +38,29 @@ export default function AudioRecorder({
       mediaRecorder.ondataavailable = (event) => {
         if (event.data.size > 0) {
           chunksRef.current.push(event.data);
-          console.log('📊 Audio chunk received:', event.data.size, 'bytes');
+          console.log('[AUDIO] Audio chunk received:', event.data.size, 'bytes');
         }
       };
 
       // When recording stops, create final audio blob
       mediaRecorder.onstop = () => {
-        console.log('🛑 Recording stopped, creating audio file...');
+        console.log('[AUDIO] Recording stopped, creating audio file...');
         const audioBlob = new Blob(chunksRef.current, { type: 'audio/webm' });
-        console.log('📦 Audio file created:', audioBlob.size, 'bytes');
+        console.log('[AUDIO] Audio file created:', audioBlob.size, 'bytes');
         onRecordingComplete(audioBlob);
         
         // Stop all audio tracks to release microphone
         stream.getTracks().forEach(track => track.stop());
-        console.log('🔌 Microphone released');
+        console.log('[AUDIO] Microphone released');
       };
 
       // Start capturing audio
       mediaRecorder.start();
       onToggleRecording();
-      console.log('🎙️ Recording started! Speak now...');
+      console.log('[AUDIO] Recording started! Speak now...');
       
     } catch (error) {
-      console.error('❌ Error accessing microphone:', error);
+      console.error('[ERROR] Error accessing microphone:', error);
       alert('Could not access microphone. Please check your browser permissions.');
     }
   };
@@ -71,7 +71,7 @@ export default function AudioRecorder({
    */
   const stopRecording = () => {
     if (mediaRecorderRef.current && isRecording) {
-      console.log('⏹️ Stopping recording...');
+      console.log('[AUDIO] Stopping recording...');
       mediaRecorderRef.current.stop();
       onToggleRecording();
     }
@@ -82,16 +82,22 @@ export default function AudioRecorder({
       {!isRecording ? (
         <button
           onClick={startRecording}
-          className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
+          className="group px-8 py-4 rounded-xl font-bold text-white shadow-lg bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 hover:scale-105 hover:shadow-xl transform transition-all flex items-center gap-3"
         >
-          🎤 Start Recording
+          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+            <path fillRule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clipRule="evenodd" />
+          </svg>
+          Start Recording
         </button>
       ) : (
         <button
           onClick={stopRecording}
-          className="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition flex items-center gap-2"
+          className="px-8 py-4 rounded-xl font-bold text-white shadow-lg bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700 hover:scale-105 hover:shadow-xl transform transition-all flex items-center gap-3"
         >
-          <span className="w-3 h-3 bg-white rounded-full animate-pulse"></span>
+          <span className="relative flex h-3 w-3">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+          </span>
           Stop Recording
         </button>
       )}

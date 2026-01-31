@@ -86,13 +86,13 @@ export default function InterviewPage() {
     if (!isRecording) {
       // Starting interview - record start time
       const now = Date.now();
-      console.log('⏱️ Setting start time:', now);
+      console.log('[RECORDING] Setting start time:', now);
       startTimeRef.current = now; // Store in ref for immediate access
       setIsRecording(true);
-      console.log('✅ Recording state set to true');
+      console.log('[RECORDING] Recording state set to true');
     } else {
       // Stopping interview (actual recording stop handled by AudioRecorder)
-      console.log('⏸️ Setting recording state to false');
+      console.log('[RECORDING] Setting recording state to false');
       setIsRecording(false);
     }
   }
@@ -107,37 +107,37 @@ export default function InterviewPage() {
    * 5. Navigate to results page
    */
   async function handleRecordingComplete(blob: Blob) {
-    console.log('🎤 handleRecordingComplete called');
-    console.log('  Selected problem:', selectedProblem?.title || 'NONE');
-    console.log('  Start time:', startTimeRef.current || 'NONE');
-    console.log('  Blob size:', blob.size, 'bytes');
+    console.log('[RECORDING] handleRecordingComplete called');
+    console.log('[RECORDING] Selected problem:', selectedProblem?.title || 'NONE');
+    console.log('[RECORDING] Start time:', startTimeRef.current || 'NONE');
+    console.log('[RECORDING] Blob size:', blob.size, 'bytes');
     
     if (!selectedProblem) {
-      console.error('❌ No problem selected!');
+      console.error('[ERROR] No problem selected!');
       alert('Please select a problem before recording.');
       return;
     }
     
     if (!startTimeRef.current) {
-      console.error('❌ No start time! This should not happen.');
+      console.error('[ERROR] No start time! This should not happen.');
       alert('Recording error: start time not set. Please try again.');
       return;
     }
 
-    console.log('✅ Validation passed, processing recording...');
-    console.log('  Problem:', selectedProblem.title);
-    console.log('  Language:', language);
-    console.log('  Code length:', code.length);
+    console.log('[PROCESSING] Validation passed, processing recording...');
+    console.log('[PROCESSING] Problem:', selectedProblem.title);
+    console.log('[PROCESSING] Language:', language);
+    console.log('[PROCESSING] Code length:', code.length);
     
     setIsProcessing(true);
     
     try {
       // Calculate interview duration
       const durationSeconds = Math.floor((Date.now() - startTimeRef.current) / 1000);
-      console.log('  Duration:', durationSeconds, 'seconds');
+      console.log('[PROCESSING] Duration:', durationSeconds, 'seconds');
 
       // Step 1: Save initial session to database
-      console.log('💾 Creating session...');
+      console.log('[DATABASE] Creating session...');
       const session = await createSession({
         problem_id: selectedProblem.id,
         language,
@@ -145,10 +145,10 @@ export default function InterviewPage() {
         duration_seconds: durationSeconds,
       });
 
-      console.log('✅ Session created:', session.id);
+      console.log('[DATABASE] Session created:', session.id);
 
       // Step 2: Transcribe audio using OpenAI Whisper
-      console.log('📝 Transcribing audio with Whisper...');
+      console.log('[TRANSCRIPTION] Transcribing audio with Deepgram...');
       const formData = new FormData();
       formData.append('audio', blob, 'recording.webm');
       
@@ -162,8 +162,8 @@ export default function InterviewPage() {
       }
 
       const { transcript } = await transcribeResponse.json();
-      console.log('✅ Transcription complete:', transcript.length, 'characters');
-      console.log('  First 100 chars:', transcript.substring(0, 100));
+      console.log('[TRANSCRIPTION] Transcription complete:', transcript.length, 'characters');
+      console.log('[TRANSCRIPTION] First 100 chars:', transcript.substring(0, 100));
       
       // Check if we have a transcript
       if (!transcript || transcript.trim().length === 0) {
@@ -209,13 +209,21 @@ export default function InterviewPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
-      <div className="max-w-7xl mx-auto">
-        <h1 className="text-3xl font-bold mb-2">AI Interview Practice</h1>
-        <p className="text-gray-600 mb-8">Practice coding interviews with AI-powered feedback</p>
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+      {/* Header */}
+      <div className="bg-white border-b border-gray-200 shadow-sm">
+        <div className="max-w-7xl mx-auto px-8 py-6">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+            AI Interview Practice
+          </h1>
+          <p className="text-gray-600 mt-2">Practice coding interviews with real-time AI feedback</p>
+        </div>
+      </div>
 
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-8 py-8">
         {/* Problem Selection */}
-        <div className="mb-6">
+        <div className="mb-8">
           <ProblemSelector
             problems={problems}
             selectedProblem={selectedProblem}
@@ -223,54 +231,97 @@ export default function InterviewPage() {
           />
         </div>
 
-        {/* Language Selector */}
         {selectedProblem && (
-          <div className="mb-4">
-            <LanguageSelector
-              value={language}
-              onChange={setLanguage}
-            />
-          </div>
-        )}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* Left Column - Controls */}
+            <div className="lg:col-span-1 space-y-6">
+              {/* Language Selector */}
+              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-3">
+                  Programming Language
+                </h3>
+                <LanguageSelector
+                  value={language}
+                  onChange={setLanguage}
+                />
+              </div>
 
-        {/* Code Editor */}
-        {selectedProblem && (
-          <div className="mb-6 h-96">
-            <CodeEditor
-              key={language} // Force re-render when language changes
-              language={LANGUAGES[language].monaco}
-              value={code}
-              onChange={setCode}
-            />
-          </div>
-        )}
+              {/* Recording Controls */}
+              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-4">
+                  Interview Session
+                </h3>
+                <AudioRecorder
+                  onRecordingComplete={handleRecordingComplete}
+                  isRecording={isRecording}
+                  onToggleRecording={handleToggleRecording}
+                />
+                
+                {/* Timer Display */}
+                {isRecording && startTimeRef.current && (
+                  <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+                    <div className="flex items-center gap-2">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                      </span>
+                      <span className="text-sm font-bold text-red-700">
+                        Recording
+                      </span>
+                    </div>
+                    <p className="text-2xl font-mono font-bold text-red-600 mt-2">
+                      {Math.floor((Date.now() - startTimeRef.current) / 1000)}s
+                    </p>
+                  </div>
+                )}
+                
+                {!isRecording && (
+                  <div className="mt-4 p-3 bg-gray-50 border border-gray-200 rounded-lg">
+                    <p className="text-xs text-gray-600">
+                      Click Start Recording to begin your interview session. Explain your thought process as you code.
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
 
-        {/* Recording Controls */}
-        {selectedProblem && (
-          <div className="flex items-center gap-4">
-            <AudioRecorder
-              onRecordingComplete={handleRecordingComplete}
-              isRecording={isRecording}
-              onToggleRecording={handleToggleRecording}
-            />
-            
-            {/* Timer Display */}
-            {isRecording && startTimeRef.current && (
-              <span className="text-gray-600 font-mono">
-                Time: {Math.floor((Date.now() - startTimeRef.current) / 1000)}s
-              </span>
-            )}
+            {/* Right Column - Code Editor */}
+            <div className="lg:col-span-2">
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                <div className="px-6 py-3 bg-gray-50 border-b border-gray-200 flex items-center justify-between">
+                  <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wide">
+                    Code Editor
+                  </h3>
+                  <span className="text-xs font-medium text-gray-500 px-2 py-1 bg-white rounded border border-gray-200">
+                    {LANGUAGES[language].name}
+                  </span>
+                </div>
+                <div className="h-[600px]">
+                  <CodeEditor
+                    key={language}
+                    language={LANGUAGES[language].monaco}
+                    value={code}
+                    onChange={setCode}
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         )}
 
         {/* Processing Overlay */}
         {isProcessing && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white p-8 rounded-lg text-center max-w-md">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-              <p className="text-lg font-medium mb-2">Processing your interview...</p>
-              <p className="text-sm text-gray-600">
-                Transcribing audio and generating feedback. This may take 30-60 seconds.
+          <div className="fixed inset-0 bg-gradient-to-br from-indigo-900/90 to-purple-900/90 backdrop-blur-sm flex items-center justify-center z-50">
+            <div className="bg-white p-10 rounded-2xl text-center max-w-md shadow-2xl">
+              <div className="relative w-16 h-16 mx-auto mb-6">
+                <div className="absolute inset-0 border-4 border-indigo-200 rounded-full"></div>
+                <div className="absolute inset-0 border-4 border-indigo-600 rounded-full border-t-transparent animate-spin"></div>
+              </div>
+              <p className="text-xl font-bold text-gray-900 mb-3">Processing Your Interview</p>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Transcribing your audio and generating personalized feedback.
+                <br />
+                This may take 30-60 seconds.
               </p>
             </div>
           </div>

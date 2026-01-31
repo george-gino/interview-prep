@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    console.log('🎤 Transcribing audio with Deepgram:', audioFile.name, audioFile.size, 'bytes');
+    console.log('[DEEPGRAM] Transcribing audio:', audioFile.name, audioFile.size, 'bytes');
 
     // Convert file to buffer
     const audioBuffer = await audioFile.arrayBuffer();
@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
     );
 
     if (error) {
-      console.error('❌ Deepgram error:', error);
+      console.error('[ERROR] Deepgram error:', error);
       return NextResponse.json(
         { error: 'Transcription failed' },
         { status: 500 }
@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
     // Extract transcript from Deepgram response
     const transcript = result.results.channels[0].alternatives[0].transcript;
     
-    console.log('✅ Transcription complete:', transcript.length, 'characters');
+    console.log('[DEEPGRAM] Transcription complete:', transcript.length, 'characters');
     console.log('   Confidence:', result.results.channels[0].alternatives[0].confidence);
 
     return NextResponse.json({
@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
     });
     
   } catch (error) {
-    console.error('❌ Transcription error:', error);
+    console.error('[ERROR] Transcription error:', error);
     return NextResponse.json(
       { error: 'Failed to transcribe audio' },
       { status: 500 }

@@ -31,7 +31,7 @@ export default function ProblemSelector({
           Select a Problem
         </label>
         <select
-          className="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white cursor-pointer hover:border-gray-400 transition"
+          className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white cursor-pointer hover:border-indigo-400 hover:shadow-md"
           value={selectedProblem?.id || ''}
           onChange={(e) => {
             const problem = problems.find(p => p.id === parseInt(e.target.value));
@@ -42,7 +42,7 @@ export default function ProblemSelector({
           
           {/* Easy Problems */}
           {groupedProblems.Easy.length > 0 && (
-            <optgroup label="🟢 Easy">
+            <optgroup label="EASY">
               {groupedProblems.Easy.map((problem) => (
                 <option key={problem.id} value={problem.id}>
                   {problem.title}
@@ -53,7 +53,7 @@ export default function ProblemSelector({
           
           {/* Medium Problems */}
           {groupedProblems.Medium.length > 0 && (
-            <optgroup label="🟡 Medium">
+            <optgroup label="MEDIUM">
               {groupedProblems.Medium.map((problem) => (
                 <option key={problem.id} value={problem.id}>
                   {problem.title}
@@ -64,7 +64,7 @@ export default function ProblemSelector({
           
           {/* Hard Problems */}
           {groupedProblems.Hard.length > 0 && (
-            <optgroup label="🔴 Hard">
+            <optgroup label="HARD">
               {groupedProblems.Hard.map((problem) => (
                 <option key={problem.id} value={problem.id}>
                   {problem.title}
@@ -93,20 +93,20 @@ export default function ProblemSelector({
 
       {/* Display selected problem description */}
       {selectedProblem && (
-        <div className="p-6 bg-white rounded-lg border-2 border-gray-200 shadow-sm">
-          <div className="flex items-center justify-between mb-3">
+        <div className="p-6 bg-gradient-to-br from-white to-gray-50 rounded-lg border border-gray-200 shadow-sm">
+          <div className="flex items-center justify-between mb-4">
             <h3 className="text-xl font-bold text-gray-900">
               {selectedProblem.title}
             </h3>
-            <span className={`text-sm font-semibold px-3 py-1 rounded-full ${
-              selectedProblem.difficulty === 'Easy' ? 'bg-green-100 text-green-700 border border-green-300' :
-              selectedProblem.difficulty === 'Medium' ? 'bg-yellow-100 text-yellow-700 border border-yellow-300' :
-              'bg-red-100 text-red-700 border border-red-300'
+            <span className={`text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wide ${
+              selectedProblem.difficulty === 'Easy' ? 'bg-emerald-100 text-emerald-700' :
+              selectedProblem.difficulty === 'Medium' ? 'bg-amber-100 text-amber-700' :
+              'bg-rose-100 text-rose-700'
             }`}>
               {selectedProblem.difficulty}
             </span>
           </div>
-          <div className="text-gray-700 leading-relaxed whitespace-pre-wrap">
+          <div className="text-gray-700 leading-relaxed whitespace-pre-wrap text-sm">
             {selectedProblem.description}
           </div>
         </div>
