@@ -230,7 +230,7 @@ export default function InterviewPage() {
       {selectedProblem ? (
         <div className="flex-1 flex overflow-hidden">
           {/* Left Sidebar - Problem Description */}
-          <div className="w-[40%] border-r border-gray-200 overflow-y-auto bg-white">
+          <div className="w-[40%] border-r border-gray-300 overflow-y-auto bg-gray-50">
             <div className="p-6">
               {/* Problem Header */}
               <div className="mb-4">
@@ -246,12 +246,12 @@ export default function InterviewPage() {
                     {selectedProblem.difficulty}
                   </span>
                 </div>
-                <div className="h-px bg-gray-200"></div>
+                <div className="h-px bg-gray-300"></div>
               </div>
 
               {/* Problem Description */}
               <div className="prose prose-sm max-w-none">
-                <div className="text-gray-700 leading-relaxed whitespace-pre-wrap">
+                <div className="text-gray-800 leading-relaxed whitespace-pre-wrap">
                   {selectedProblem.description}
                 </div>
               </div>
