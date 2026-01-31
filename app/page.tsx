@@ -219,6 +219,7 @@ export default function InterviewPage() {
         {selectedProblem && (
           <div className="mb-6 h-96">
             <CodeEditor
+              key={language} // Force re-render when language changes
               language={LANGUAGES[language].monaco}
               value={code}
               onChange={setCode}

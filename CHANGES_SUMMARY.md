@@ -180,3 +180,4 @@ Once you've proven the concept and have users willing to pay, you can always upg
 
 **Ready to launch?** Just add your OpenAI key and run `npm run dev`!
 
+
