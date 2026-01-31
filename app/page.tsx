@@ -4,13 +4,13 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 /**
- * Root page - redirects to problems list
+ * Root page - redirects to landing page
  */
 export default function HomePage() {
   const router = useRouter();
 
   useEffect(() => {
-    router.push('/problems');
+    router.push('/landing');
   }, [router]);
 
   return (
