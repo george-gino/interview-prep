@@ -209,11 +209,11 @@ export default function InterviewPage() {
   }
 
   return (
-    <div className="h-screen flex flex-col bg-white overflow-hidden">
+    <div className="h-screen flex flex-col bg-gray-900 overflow-hidden">
       {/* Compact Top Bar */}
-      <div className="flex-shrink-0 bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between">
+      <div className="flex-shrink-0 bg-gray-800 border-b border-gray-700 px-6 py-3 flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <h1 className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+          <h1 className="text-xl font-bold bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
             AI Interview Practice
           </h1>
           <div className="w-80">
@@ -230,28 +230,28 @@ export default function InterviewPage() {
       {selectedProblem ? (
         <div className="flex-1 flex overflow-hidden">
           {/* Left Sidebar - Problem Description */}
-          <div className="w-[40%] border-r border-gray-300 overflow-y-auto bg-gray-50">
+          <div className="w-[40%] border-r border-gray-700 overflow-y-auto bg-gray-800">
             <div className="p-6">
               {/* Problem Header */}
               <div className="mb-4">
                 <div className="flex items-center justify-between mb-3">
-                  <h2 className="text-2xl font-bold text-gray-900">
+                  <h2 className="text-2xl font-bold text-white">
                     {selectedProblem.title}
                   </h2>
                   <span className={`text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wide ${
-                    selectedProblem.difficulty === 'Easy' ? 'bg-emerald-100 text-emerald-700' :
-                    selectedProblem.difficulty === 'Medium' ? 'bg-amber-100 text-amber-700' :
-                    'bg-rose-100 text-rose-700'
+                    selectedProblem.difficulty === 'Easy' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' :
+                    selectedProblem.difficulty === 'Medium' ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30' :
+                    'bg-rose-500/20 text-rose-400 border border-rose-500/30'
                   }`}>
                     {selectedProblem.difficulty}
                   </span>
                 </div>
-                <div className="h-px bg-gray-300"></div>
+                <div className="h-px bg-gray-700"></div>
               </div>
 
               {/* Problem Description */}
-              <div className="prose prose-sm max-w-none">
-                <div className="text-gray-800 leading-relaxed whitespace-pre-wrap">
+              <div className="prose prose-sm prose-invert max-w-none">
+                <div className="text-gray-300 leading-relaxed whitespace-pre-wrap">
                   {selectedProblem.description}
                 </div>
               </div>
@@ -316,12 +316,12 @@ export default function InterviewPage() {
           </div>
         </div>
       ) : (
-        <div className="flex-1 flex items-center justify-center bg-gradient-to-br from-indigo-50 to-purple-50">
+        <div className="flex-1 flex items-center justify-center bg-gray-900">
           <div className="text-center">
-            <svg className="w-24 h-24 mx-auto mb-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-24 h-24 mx-auto mb-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
             </svg>
-            <h2 className="text-2xl font-bold text-gray-700 mb-2">Select a Problem to Begin</h2>
+            <h2 className="text-2xl font-bold text-gray-300 mb-2">Select a Problem to Begin</h2>
             <p className="text-gray-500">Choose a coding problem from the dropdown above to start practicing</p>
           </div>
         </div>

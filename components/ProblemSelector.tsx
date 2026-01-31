@@ -25,7 +25,7 @@ export default function ProblemSelector({
 
   return (
     <select
-      className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white cursor-pointer hover:border-indigo-400"
+      className="w-full px-3 py-2 text-sm border border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 bg-gray-700 text-gray-200 cursor-pointer hover:border-emerald-500"
       value={selectedProblem?.id || ''}
       onChange={(e) => {
         const problem = problems.find(p => p.id === parseInt(e.target.value));
