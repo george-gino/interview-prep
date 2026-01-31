@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import CodeEditor from '@/components/CodeEditor';
 import AudioRecorder from '@/components/AudioRecorder';
+import VoiceInterviewer from '@/components/VoiceInterviewer';
 import LanguageSelector from '@/components/LanguageSelector';
 import { createSession, updateSession } from '@/lib/supabase';
 import { Problem, LanguageKey, LANGUAGES } from '@/lib/types';
@@ -22,6 +23,7 @@ export default function ProblemPage() {
   const [code, setCode] = useState('');
   const [isRecording, setIsRecording] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [interviewMode, setInterviewMode] = useState<'recorded' | 'voice'>('recorded');
   const startTimeRef = useRef<number | null>(null);
   
   const router = useRouter();
@@ -190,6 +192,61 @@ export default function ProblemPage() {
     }
   }
 
+  /**
+   * Handles when voice interview is complete
+   */
+  async function handleVoiceComplete(transcript: string) {
+    if (!problem) {
+      alert('Problem not loaded. Please try again.');
+      return;
+    }
+
+    console.log('[VOICE-COMPLETE] Processing voice interview...');
+    setIsProcessing(true);
+
+    try {
+      // Create session
+      const session = await createSession({
+        problem_id: problem.id,
+        language,
+        code,
+        duration_seconds: 0, // Will be updated
+      });
+
+      // Get AI feedback based on conversation transcript
+      const feedbackResponse = await fetch('/api/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          problemDescription: problem.description,
+          code,
+          transcript,
+        }),
+      });
+
+      if (!feedbackResponse.ok) {
+        throw new Error('Feedback generation failed');
+      }
+
+      const { feedback, score } = await feedbackResponse.json();
+
+      // Update session with results
+      await updateSession(session.id, {
+        transcript,
+        feedback,
+        score,
+      });
+
+      // Navigate to results page
+      router.push(`/session/${session.id}`);
+      
+    } catch (error: any) {
+      console.error('Error processing voice interview:', error);
+      alert(`Error processing interview: ${error?.message || 'Unknown error'}`);
+      setIsProcessing(false);
+    }
+  }
+
   if (!problem) {
     return (
       <div className="h-screen flex items-center justify-center bg-gray-900">
@@ -252,19 +309,50 @@ export default function ProblemPage() {
           </div>
         </div>
 
-        {/* Right Side - Editor */}
+        {/* Right Side - Editor / Interview */}
         <div className="flex-1 flex flex-col bg-gray-900">
           {/* Editor Header */}
           <div className="flex-shrink-0 bg-gray-800 border-b border-gray-700 px-4 py-2 flex items-center justify-between">
-            <div className="w-48">
-              <LanguageSelector
-                value={language}
-                onChange={setLanguage}
-              />
+            <div className="flex items-center gap-4">
+              {/* Mode Toggle */}
+              <div className="flex items-center gap-2 bg-gray-700 rounded-lg p-1">
+                <button
+                  onClick={() => setInterviewMode('recorded')}
+                  className={`px-4 py-2 rounded-md text-sm font-semibold transition-all ${
+                    interviewMode === 'recorded'
+                      ? 'bg-gray-600 text-white'
+                      : 'text-gray-400 hover:text-gray-200'
+                  }`}
+                >
+                  Recorded Mode
+                </button>
+                <button
+                  onClick={() => setInterviewMode('voice')}
+                  className={`px-4 py-2 rounded-md text-sm font-semibold transition-all flex items-center gap-2 ${
+                    interviewMode === 'voice'
+                      ? 'bg-emerald-600 text-white'
+                      : 'text-gray-400 hover:text-gray-200'
+                  }`}
+                >
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clipRule="evenodd" />
+                  </svg>
+                  Live Interview
+                </button>
+              </div>
+
+              {interviewMode === 'recorded' && (
+                <div className="w-48">
+                  <LanguageSelector
+                    value={language}
+                    onChange={setLanguage}
+                  />
+                </div>
+              )}
             </div>
             
             {/* Recording Status */}
-            {isRecording && startTimeRef.current && (
+            {interviewMode === 'recorded' && isRecording && startTimeRef.current && (
               <div className="flex items-center gap-3 px-3 py-1.5 bg-red-900/30 border border-red-700 rounded-lg">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
@@ -280,30 +368,45 @@ export default function ProblemPage() {
             )}
           </div>
 
-          {/* Code Editor */}
-          <div className="flex-1 overflow-hidden">
-            <CodeEditor
-              key={language}
-              language={LANGUAGES[language].monaco}
-              value={code}
-              onChange={setCode}
-            />
-          </div>
+          {/* Content Area */}
+          {interviewMode === 'recorded' ? (
+            <>
+              {/* Code Editor */}
+              <div className="flex-1 overflow-hidden">
+                <CodeEditor
+                  key={language}
+                  language={LANGUAGES[language].monaco}
+                  value={code}
+                  onChange={setCode}
+                />
+              </div>
 
-          {/* Bottom Controls */}
-          <div className="flex-shrink-0 bg-gray-800 border-t border-gray-700 px-6 py-4 flex items-center justify-between">
-            <AudioRecorder
-              onRecordingComplete={handleRecordingComplete}
-              isRecording={isRecording}
-              onToggleRecording={handleToggleRecording}
-            />
-            
-            {!isRecording && (
-              <p className="text-xs text-gray-400">
-                Start recording to begin your interview. Explain your approach as you code.
-              </p>
-            )}
-          </div>
+              {/* Bottom Controls */}
+              <div className="flex-shrink-0 bg-gray-800 border-t border-gray-700 px-6 py-4 flex items-center justify-between">
+                <AudioRecorder
+                  onRecordingComplete={handleRecordingComplete}
+                  isRecording={isRecording}
+                  onToggleRecording={handleToggleRecording}
+                />
+                
+                {!isRecording && (
+                  <p className="text-xs text-gray-400">
+                    Start recording to begin your interview. Explain your approach as you code.
+                  </p>
+                )}
+              </div>
+            </>
+          ) : (
+            <>
+              {/* Voice Interview Mode */}
+              <div className="flex-1 overflow-y-auto p-6">
+                <VoiceInterviewer
+                  problemId={problem.id}
+                  onComplete={handleVoiceComplete}
+                />
+              </div>
+            </>
+          )}
         </div>
       </div>
 
