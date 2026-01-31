@@ -7,6 +7,11 @@ import { supabase } from '@/lib/supabase';
 // Initialize API clients
 const deepgram = createClient(process.env.DEEPGRAM_API_KEY || '');
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY || '' });
+
+// Debug: Check if ElevenLabs API key is loaded
+console.log('[ELEVENLABS] API key exists:', !!process.env.ELEVENLABS_API_KEY);
+console.log('[ELEVENLABS] API key prefix:', process.env.ELEVENLABS_API_KEY?.substring(0, 10));
+
 const elevenlabs = new ElevenLabsClient({ apiKey: process.env.ELEVENLABS_API_KEY || '' });
 
 // In-memory session storage (use Redis in production)
@@ -117,7 +122,7 @@ async function handleStart(formData: FormData) {
 
   // Generate greeting audio
   console.log('[VOICE-SESSION] Generating greeting audio...');
-  const audioStream = await elevenlabs.textToSpeech.convert('Rachel', {
+  const audioStream = await elevenlabs.textToSpeech.convert('21m00Tcm4TlvDq8ikWAM', {
     text: greeting,
     model_id: 'eleven_turbo_v2',
   });
@@ -234,7 +239,7 @@ async function handleRespond(formData: FormData) {
 
   // Generate audio for response
   console.log('[VOICE-SESSION] Generating response audio...');
-  const audioStream = await elevenlabs.textToSpeech.convert('Rachel', {
+  const audioStream = await elevenlabs.textToSpeech.convert('21m00Tcm4TlvDq8ikWAM', {
     text: aiResponse,
     model_id: 'eleven_turbo_v2',
   });
