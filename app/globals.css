@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Apply custom font to all text elements except code editor */
+@layer base {
+  body {
+    font-family: var(--font-space-grotesk), system-ui, -apple-system, sans-serif;
+  }
+  
+  /* Preserve monospace font for code elements */
+  code, pre, .monaco-editor {
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace !important;
+  }
+}
+
 /* Custom color scheme */
 :root {
   --primary: #6366f1;
