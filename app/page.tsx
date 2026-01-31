@@ -209,124 +209,141 @@ export default function InterviewPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
-      {/* Header */}
-      <div className="bg-white border-b border-gray-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-8 py-6">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+    <div className="h-screen flex flex-col bg-white overflow-hidden">
+      {/* Compact Top Bar */}
+      <div className="flex-shrink-0 bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <h1 className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
             AI Interview Practice
           </h1>
-          <p className="text-gray-600 mt-2">Practice coding interviews with real-time AI feedback</p>
+          <div className="w-80">
+            <ProblemSelector
+              problems={problems}
+              selectedProblem={selectedProblem}
+              onSelectProblem={setSelectedProblem}
+            />
+          </div>
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-8 py-8">
-        {/* Problem Selection */}
-        <div className="mb-8">
-          <ProblemSelector
-            problems={problems}
-            selectedProblem={selectedProblem}
-            onSelectProblem={setSelectedProblem}
-          />
-        </div>
-
-        {selectedProblem && (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Left Column - Controls */}
-            <div className="lg:col-span-1 space-y-6">
-              {/* Language Selector */}
-              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-3">
-                  Programming Language
-                </h3>
-                <LanguageSelector
-                  value={language}
-                  onChange={setLanguage}
-                />
-              </div>
-
-              {/* Recording Controls */}
-              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-4">
-                  Interview Session
-                </h3>
-                <AudioRecorder
-                  onRecordingComplete={handleRecordingComplete}
-                  isRecording={isRecording}
-                  onToggleRecording={handleToggleRecording}
-                />
-                
-                {/* Timer Display */}
-                {isRecording && startTimeRef.current && (
-                  <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg">
-                    <div className="flex items-center gap-2">
-                      <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
-                      </span>
-                      <span className="text-sm font-bold text-red-700">
-                        Recording
-                      </span>
-                    </div>
-                    <p className="text-2xl font-mono font-bold text-red-600 mt-2">
-                      {Math.floor((Date.now() - startTimeRef.current) / 1000)}s
-                    </p>
-                  </div>
-                )}
-                
-                {!isRecording && (
-                  <div className="mt-4 p-3 bg-gray-50 border border-gray-200 rounded-lg">
-                    <p className="text-xs text-gray-600">
-                      Click Start Recording to begin your interview session. Explain your thought process as you code.
-                    </p>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* Right Column - Code Editor */}
-            <div className="lg:col-span-2">
-              <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-                <div className="px-6 py-3 bg-gray-50 border-b border-gray-200 flex items-center justify-between">
-                  <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wide">
-                    Code Editor
-                  </h3>
-                  <span className="text-xs font-medium text-gray-500 px-2 py-1 bg-white rounded border border-gray-200">
-                    {LANGUAGES[language].name}
+      {/* Main Split View */}
+      {selectedProblem ? (
+        <div className="flex-1 flex overflow-hidden">
+          {/* Left Sidebar - Problem Description */}
+          <div className="w-[40%] border-r border-gray-200 overflow-y-auto bg-white">
+            <div className="p-6">
+              {/* Problem Header */}
+              <div className="mb-4">
+                <div className="flex items-center justify-between mb-3">
+                  <h2 className="text-2xl font-bold text-gray-900">
+                    {selectedProblem.title}
+                  </h2>
+                  <span className={`text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wide ${
+                    selectedProblem.difficulty === 'Easy' ? 'bg-emerald-100 text-emerald-700' :
+                    selectedProblem.difficulty === 'Medium' ? 'bg-amber-100 text-amber-700' :
+                    'bg-rose-100 text-rose-700'
+                  }`}>
+                    {selectedProblem.difficulty}
                   </span>
                 </div>
-                <div className="h-[600px]">
-                  <CodeEditor
-                    key={language}
-                    language={LANGUAGES[language].monaco}
-                    value={code}
-                    onChange={setCode}
+                <div className="h-px bg-gray-200"></div>
+              </div>
+
+              {/* Problem Description */}
+              <div className="prose prose-sm max-w-none">
+                <div className="text-gray-700 leading-relaxed whitespace-pre-wrap">
+                  {selectedProblem.description}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Side - Editor */}
+          <div className="flex-1 flex flex-col bg-gray-900">
+            {/* Editor Header */}
+            <div className="flex-shrink-0 bg-gray-800 border-b border-gray-700 px-4 py-2 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <span className="text-sm font-medium text-gray-300">Language:</span>
+                <div className="w-48">
+                  <LanguageSelector
+                    value={language}
+                    onChange={setLanguage}
                   />
                 </div>
               </div>
+              
+              {/* Recording Status */}
+              {isRecording && startTimeRef.current && (
+                <div className="flex items-center gap-3 px-3 py-1.5 bg-red-900/30 border border-red-700 rounded-lg">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                  </span>
+                  <span className="text-sm font-bold text-red-400">
+                    Recording
+                  </span>
+                  <span className="text-sm font-mono font-bold text-red-400">
+                    {Math.floor((Date.now() - startTimeRef.current) / 1000)}s
+                  </span>
+                </div>
+              )}
             </div>
-          </div>
-        )}
 
-        {/* Processing Overlay */}
-        {isProcessing && (
-          <div className="fixed inset-0 bg-gradient-to-br from-indigo-900/90 to-purple-900/90 backdrop-blur-sm flex items-center justify-center z-50">
-            <div className="bg-white p-10 rounded-2xl text-center max-w-md shadow-2xl">
-              <div className="relative w-16 h-16 mx-auto mb-6">
-                <div className="absolute inset-0 border-4 border-indigo-200 rounded-full"></div>
-                <div className="absolute inset-0 border-4 border-indigo-600 rounded-full border-t-transparent animate-spin"></div>
-              </div>
-              <p className="text-xl font-bold text-gray-900 mb-3">Processing Your Interview</p>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                Transcribing your audio and generating personalized feedback.
-                <br />
-                This may take 30-60 seconds.
-              </p>
+            {/* Code Editor */}
+            <div className="flex-1 overflow-hidden">
+              <CodeEditor
+                key={language}
+                language={LANGUAGES[language].monaco}
+                value={code}
+                onChange={setCode}
+              />
+            </div>
+
+            {/* Bottom Controls */}
+            <div className="flex-shrink-0 bg-gray-800 border-t border-gray-700 px-6 py-4 flex items-center justify-between">
+              <AudioRecorder
+                onRecordingComplete={handleRecordingComplete}
+                isRecording={isRecording}
+                onToggleRecording={handleToggleRecording}
+              />
+              
+              {!isRecording && (
+                <p className="text-xs text-gray-400">
+                  Start recording to begin your interview. Explain your approach as you code.
+                </p>
+              )}
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      ) : (
+        <div className="flex-1 flex items-center justify-center bg-gradient-to-br from-indigo-50 to-purple-50">
+          <div className="text-center">
+            <svg className="w-24 h-24 mx-auto mb-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+            </svg>
+            <h2 className="text-2xl font-bold text-gray-700 mb-2">Select a Problem to Begin</h2>
+            <p className="text-gray-500">Choose a coding problem from the dropdown above to start practicing</p>
+          </div>
+        </div>
+      )}
+
+      {/* Processing Overlay */}
+      {isProcessing && (
+        <div className="fixed inset-0 bg-gradient-to-br from-indigo-900/90 to-purple-900/90 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="bg-white p-10 rounded-2xl text-center max-w-md shadow-2xl">
+            <div className="relative w-16 h-16 mx-auto mb-6">
+              <div className="absolute inset-0 border-4 border-indigo-200 rounded-full"></div>
+              <div className="absolute inset-0 border-4 border-indigo-600 rounded-full border-t-transparent animate-spin"></div>
+            </div>
+            <p className="text-xl font-bold text-gray-900 mb-3">Processing Your Interview</p>
+            <p className="text-sm text-gray-600 leading-relaxed">
+              Transcribing your audio and generating personalized feedback.
+              <br />
+              This may take 30-60 seconds.
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
