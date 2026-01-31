@@ -25,38 +25,72 @@ export async function POST(request: NextRequest) {
 
     console.log('Generating feedback for interview session');
 
-    // Generate prompt for OpenAI
-    const prompt = generateFeedbackPrompt(problemDescription, code, transcript);
-
-    // Call OpenAI API (using GPT-4 for best quality, or use 'gpt-3.5-turbo' for cheaper)
+    // Call OpenAI API to get structured feedback
     const completion = await openai.chat.completions.create({
-      model: 'gpt-4o', // or 'gpt-3.5-turbo' for lower cost
+      model: 'gpt-4o',
       messages: [
         {
           role: 'system',
-          content: 'You are an expert technical interviewer providing constructive feedback on coding interviews.',
+          content: `You are an expert technical interviewer. Provide feedback in JSON format with the following structure:
+{
+  "overallScore": <number 1-10>,
+  "categories": [
+    {
+      "name": "Problem Understanding",
+      "score": <number 1-10>,
+      "feedback": "<detailed feedback>"
+    },
+    {
+      "name": "Code Quality",
+      "score": <number 1-10>,
+      "feedback": "<detailed feedback>"
+    },
+    {
+      "name": "Communication",
+      "score": <number 1-10>,
+      "feedback": "<detailed feedback>"
+    },
+    {
+      "name": "Algorithm & Logic",
+      "score": <number 1-10>,
+      "feedback": "<detailed feedback>"
+    },
+    {
+      "name": "Time & Space Complexity",
+      "score": <number 1-10>,
+      "feedback": "<detailed feedback>"
+    }
+  ]
+}
+
+Keep feedback concise (2-3 sentences per category). Be constructive and specific.`,
         },
         {
           role: 'user',
-          content: prompt,
+          content: `Problem: ${problemDescription}
+
+Code Solution:
+${code}
+
+Candidate's Explanation:
+${transcript}
+
+Provide structured feedback in JSON format.`,
         },
       ],
       max_tokens: 2000,
       temperature: 0.7,
+      response_format: { type: "json_object" },
     });
 
-    // Extract feedback text from response
-    const feedback = completion.choices[0]?.message?.content || '';
+    // Parse the JSON response
+    const feedbackData = JSON.parse(completion.choices[0]?.message?.content || '{}');
 
-    // Extract overall score from feedback using regex
-    const scoreMatch = feedback.match(/Overall Score:\s*(\d+)\/10/i);
-    const score = scoreMatch ? parseInt(scoreMatch[1]) : undefined;
-
-    console.log('Feedback generated successfully, score:', score);
+    console.log('Structured feedback generated successfully');
 
     return NextResponse.json({
-      feedback,
-      score,
+      feedback: JSON.stringify(feedbackData),
+      score: feedbackData.overallScore,
     });
     
   } catch (error) {
