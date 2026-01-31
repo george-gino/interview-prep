@@ -255,8 +255,7 @@ export default function ProblemPage() {
         {/* Right Side - Editor */}
         <div className="flex-1 flex flex-col bg-gray-900">
           {/* Editor Header */}
-          <div className="flex-shrink-0 bg-gray-800 border-b border-gray-700 px-4 py-2 flex items-center justify-center relative">
-            {/* Language Selector - Centered */}
+          <div className="flex-shrink-0 bg-gray-800 border-b border-gray-700 px-4 py-2 flex items-center justify-between">
             <div className="w-48">
               <LanguageSelector
                 value={language}
@@ -264,9 +263,9 @@ export default function ProblemPage() {
               />
             </div>
             
-            {/* Recording Status - Absolute positioned to right */}
+            {/* Recording Status */}
             {isRecording && startTimeRef.current && (
-              <div className="absolute right-4 flex items-center gap-3 px-3 py-1.5 bg-red-900/30 border border-red-700 rounded-lg">
+              <div className="flex items-center gap-3 px-3 py-1.5 bg-red-900/30 border border-red-700 rounded-lg">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
