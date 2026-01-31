@@ -204,16 +204,16 @@ export default function ProblemPage() {
   return (
     <div className="h-screen flex flex-col bg-gray-900 overflow-hidden">
       {/* Header */}
-      <div className="flex-shrink-0 bg-gray-800 border-b border-gray-700 px-6 py-3 flex items-center justify-between">
+      <div className="flex-shrink-0 bg-slate-900 border-b border-slate-700 px-6 py-4 flex items-center justify-between shadow-lg">
         <div className="flex items-center gap-4">
           <Link
             href="/problems"
-            className="flex items-center gap-2 text-gray-400 hover:text-emerald-400 transition-colors"
+            className="flex items-center gap-2 text-gray-300 hover:text-emerald-400 transition-colors font-semibold"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
-            <span className="font-medium">Back to Problems</span>
+            <span className="font-semibold">Back to Problems</span>
           </Link>
         </div>
         <h1 className="text-lg font-bold bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
@@ -255,20 +255,18 @@ export default function ProblemPage() {
         {/* Right Side - Editor */}
         <div className="flex-1 flex flex-col bg-gray-900">
           {/* Editor Header */}
-          <div className="flex-shrink-0 bg-gray-800 border-b border-gray-700 px-4 py-2 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <span className="text-sm font-medium text-gray-300">Language:</span>
-              <div className="w-48">
-                <LanguageSelector
-                  value={language}
-                  onChange={setLanguage}
-                />
-              </div>
+          <div className="flex-shrink-0 bg-gray-800 border-b border-gray-700 px-4 py-2 flex items-center justify-center relative">
+            {/* Language Selector - Centered */}
+            <div className="w-48">
+              <LanguageSelector
+                value={language}
+                onChange={setLanguage}
+              />
             </div>
             
-            {/* Recording Status */}
+            {/* Recording Status - Absolute positioned to right */}
             {isRecording && startTimeRef.current && (
-              <div className="flex items-center gap-3 px-3 py-1.5 bg-red-900/30 border border-red-700 rounded-lg">
+              <div className="absolute right-4 flex items-center gap-3 px-3 py-1.5 bg-red-900/30 border border-red-700 rounded-lg">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>

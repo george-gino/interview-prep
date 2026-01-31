@@ -76,11 +76,11 @@ export default function ProblemsPage() {
   return (
     <div className="min-h-screen bg-gray-900">
       {/* Header */}
-      <div className="bg-gray-800 border-b border-gray-700 px-8 py-6">
+      <div className="bg-slate-900 border-b border-slate-700 px-8 py-6 shadow-lg">
         <h1 className="text-3xl font-bold bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent mb-2">
           AI Interview Practice
         </h1>
-        <p className="text-gray-400">Select a problem to begin your coding interview practice</p>
+        <p className="text-gray-300">Select a problem to begin your coding interview practice</p>
       </div>
 
       {/* Main Content */}

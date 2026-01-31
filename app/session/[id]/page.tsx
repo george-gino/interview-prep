@@ -16,38 +16,38 @@ export default async function SessionPage({
   const session = await getSession(params.id);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+    <div className="min-h-screen bg-gray-900">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 shadow-sm">
+      <div className="bg-slate-900 border-b border-slate-700 shadow-lg">
         <div className="max-w-7xl mx-auto px-8 py-6">
           <Link
             href="/problems"
-            className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 font-medium mb-4"
+            className="inline-flex items-center gap-2 text-gray-300 hover:text-emerald-400 font-semibold mb-4"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
             Back to Problems
           </Link>
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
             Interview Results
           </h1>
           <div className="flex flex-wrap items-center gap-3 mt-3">
-            <span className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-semibold">
+            <span className="px-3 py-1 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-full text-sm font-semibold">
               {session.problems.title}
             </span>
-            <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase ${
-              session.problems.difficulty === 'Easy' ? 'bg-emerald-100 text-emerald-700' :
-              session.problems.difficulty === 'Medium' ? 'bg-amber-100 text-amber-700' :
-              'bg-rose-100 text-rose-700'
+            <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase border ${
+              session.problems.difficulty === 'Easy' ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' :
+              session.problems.difficulty === 'Medium' ? 'bg-amber-500/20 text-amber-400 border-amber-500/30' :
+              'bg-rose-500/20 text-rose-400 border-rose-500/30'
             }`}>
               {session.problems.difficulty}
             </span>
-            <span className="text-gray-600 text-sm">
-              Language: <strong>{session.language}</strong>
+            <span className="text-gray-400 text-sm">
+              Language: <strong className="text-gray-200">{session.language}</strong>
             </span>
-            <span className="text-gray-600 text-sm">
-              Duration: <strong>{session.duration_seconds}s</strong>
+            <span className="text-gray-400 text-sm">
+              Duration: <strong className="text-gray-200">{session.duration_seconds}s</strong>
             </span>
           </div>
         </div>
