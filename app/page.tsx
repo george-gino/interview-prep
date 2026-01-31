@@ -47,15 +47,33 @@ export default function InterviewPage() {
   }
 
   /**
+   * Generates starter code template for languages not in database
+   */
+  const generateStarterCode = (lang: LanguageKey, problemTitle: string): string => {
+    const functionName = problemTitle.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '');
+    
+    const templates: Record<LanguageKey, string> = {
+      python: `def ${functionName}():\n    # Your code here\n    pass`,
+      javascript: `function ${functionName}() {\n    // Your code here\n}`,
+      typescript: `function ${functionName}(): void {\n    // Your code here\n}`,
+      java: `public class Solution {\n    public void ${functionName}() {\n        // Your code here\n    }\n}`,
+      cpp: `class Solution {\npublic:\n    void ${functionName}() {\n        // Your code here\n    }\n};`,
+      go: `func ${functionName}() {\n    // Your code here\n}`,
+      rust: `impl Solution {\n    pub fn ${functionName}() {\n        // Your code here\n    }\n}`,
+    };
+    
+    return templates[lang];
+  };
+
+  /**
    * Updates code editor when problem or language changes
    * Loads the appropriate starter code template
    */
   useEffect(() => {
     if (selectedProblem) {
-      // Get starter code for selected language, fallback to Python if not available
+      // Get starter code from database or generate template
       const starterCode = selectedProblem.starter_code[language] || 
-                         selectedProblem.starter_code.python || 
-                         '// Starter code not available for this language';
+                         generateStarterCode(language, selectedProblem.title);
       setCode(starterCode);
     }
   }, [selectedProblem, language]);
