@@ -19,9 +19,13 @@
   --gray-900: #111827;
 }
 
-/* Smooth scrolling */
-html {
+/* Smooth scrolling and dark background */
+html,
+body {
   scroll-behavior: smooth;
+  background-color: #111827;
+  margin: 0;
+  padding: 0;
 }
 
 /* Custom gradient background */
