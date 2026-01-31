@@ -21,13 +21,13 @@ export default async function SessionPage({
       <div className="bg-white border-b border-gray-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-8 py-6">
           <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-700 font-medium mb-4"
+            href="/problems"
+            className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 font-medium mb-4"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
-            Back to Practice
+            Back to Problems
           </Link>
           <h1 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
             Interview Results
@@ -107,8 +107,8 @@ export default async function SessionPage({
         {/* Call to Action */}
         <div className="text-center">
           <Link
-            href="/"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-white shadow-lg bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 hover:scale-105 hover:shadow-xl transform transition-all"
+            href="/problems"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-white shadow-lg bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 hover:scale-105 hover:shadow-xl transform transition-all"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
