@@ -195,25 +195,26 @@ export default function ProblemPage() {
   /**
    * Handles when voice interview is complete
    */
-  async function handleVoiceComplete(transcript: string) {
+  async function handleVoiceComplete(transcript: string, durationSeconds: number) {
     if (!problem) {
       alert('Problem not loaded. Please try again.');
       return;
     }
 
     console.log('[VOICE-COMPLETE] Processing voice interview...');
+    console.log('[VOICE-COMPLETE] Final code length:', code.length);
     setIsProcessing(true);
 
     try {
-      // Create session
+      // Create session with the code written during interview
       const session = await createSession({
         problem_id: problem.id,
         language,
-        code,
-        duration_seconds: 0, // Will be updated
+        code, // This is the code they wrote while talking
+        duration_seconds: durationSeconds,
       });
 
-      // Get AI feedback based on conversation transcript
+      // Get AI feedback based on conversation transcript AND code
       const feedbackResponse = await fetch('/api/feedback', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -341,18 +342,16 @@ export default function ProblemPage() {
                 </button>
               </div>
 
-              {interviewMode === 'recorded' && (
-                <div className="w-48">
-                  <LanguageSelector
-                    value={language}
-                    onChange={setLanguage}
-                  />
-                </div>
-              )}
+              <div className="w-48">
+                <LanguageSelector
+                  value={language}
+                  onChange={setLanguage}
+                />
+              </div>
             </div>
             
             {/* Recording Status */}
-            {interviewMode === 'recorded' && isRecording && startTimeRef.current && (
+            {isRecording && startTimeRef.current && (
               <div className="flex items-center gap-3 px-3 py-1.5 bg-red-900/30 border border-red-700 rounded-lg">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
@@ -368,45 +367,38 @@ export default function ProblemPage() {
             )}
           </div>
 
-          {/* Content Area */}
-          {interviewMode === 'recorded' ? (
-            <>
-              {/* Code Editor */}
-              <div className="flex-1 overflow-hidden">
-                <CodeEditor
-                  key={language}
-                  language={LANGUAGES[language].monaco}
-                  value={code}
-                  onChange={setCode}
-                />
-              </div>
+          {/* Code Editor - Always Visible */}
+          <div className="flex-1 overflow-hidden">
+            <CodeEditor
+              key={language}
+              language={LANGUAGES[language].monaco}
+              value={code}
+              onChange={setCode}
+            />
+          </div>
 
-              {/* Bottom Controls */}
-              <div className="flex-shrink-0 bg-gray-800 border-t border-gray-700 px-6 py-4 flex items-center justify-between">
+          {/* Bottom Controls */}
+          <div className="flex-shrink-0 bg-gray-800 border-t border-gray-700 px-6 py-4">
+            {interviewMode === 'recorded' ? (
+              <div className="flex items-center justify-between">
                 <AudioRecorder
                   onRecordingComplete={handleRecordingComplete}
                   isRecording={isRecording}
                   onToggleRecording={handleToggleRecording}
                 />
-                
                 {!isRecording && (
                   <p className="text-xs text-gray-400">
                     Start recording to begin your interview. Explain your approach as you code.
                   </p>
                 )}
               </div>
-            </>
-          ) : (
-            <>
-              {/* Voice Interview Mode */}
-              <div className="flex-1 overflow-y-auto p-6">
-                <VoiceInterviewer
-                  problemId={problem.id}
-                  onComplete={handleVoiceComplete}
-                />
-              </div>
-            </>
-          )}
+            ) : (
+              <VoiceInterviewer
+                problemId={problem.id}
+                onComplete={handleVoiceComplete}
+              />
+            )}
+          </div>
         </div>
       </div>
 
