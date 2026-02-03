@@ -206,6 +206,15 @@ export default function ProblemPage() {
     setIsProcessing(true);
 
     try {
+      // Extract only user responses from transcript for clearer feedback
+      // This removes AI interviewer's questions/hints so they don't affect scoring
+      const userOnlyTranscript = transcript
+        .split('\n')
+        .filter(line => line.trim().startsWith('User:'))
+        .join('\n');
+      
+      console.log('[VOICE-COMPLETE] User-only transcript length:', userOnlyTranscript.length);
+
       // Create session with the code written during interview
       const session = await createSession({
         problem_id: problem.id,
@@ -214,14 +223,14 @@ export default function ProblemPage() {
         duration_seconds: durationSeconds,
       });
 
-      // Get AI feedback based on conversation transcript AND code
+      // Get AI feedback based on USER'S responses AND code (not AI interviewer's questions)
       const feedbackResponse = await fetch('/api/feedback', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           problemDescription: problem.description,
           code,
-          transcript,
+          transcript: userOnlyTranscript, // Only user responses
         }),
       });
 
@@ -231,9 +240,9 @@ export default function ProblemPage() {
 
       const { feedback, score } = await feedbackResponse.json();
 
-      // Update session with results
+      // Update session with results (save full transcript with both user and AI)
       await updateSession(session.id, {
-        transcript,
+        transcript, // Full conversation for review
         feedback,
         score,
       });

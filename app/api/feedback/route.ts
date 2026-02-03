@@ -63,6 +63,8 @@ export async function POST(request: NextRequest) {
   ]
 }
 
+CRITICAL: If the transcript contains both "User:" and "AI:" messages, ONLY evaluate the candidate's responses (lines starting with "User:"). IGNORE all AI interviewer messages (lines starting with "AI:"). The AI interviewer's questions/hints should NOT affect the candidate's score.
+
 Keep feedback concise (2-3 sentences per category). Be constructive and specific.`,
         },
         {
@@ -72,8 +74,10 @@ Keep feedback concise (2-3 sentences per category). Be constructive and specific
 Code Solution:
 ${code}
 
-Candidate's Explanation:
+Interview Transcript:
 ${transcript}
+
+Remember: Only evaluate what the candidate (User:) said, not the AI interviewer's messages. Focus on the candidate's code and their verbal explanations.
 
 Provide structured feedback in JSON format.`,
         },

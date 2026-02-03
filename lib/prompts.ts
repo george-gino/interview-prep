@@ -19,8 +19,15 @@ CANDIDATE'S CODE:
 ${code}
 \`\`\`
 
-INTERVIEW TRANSCRIPT (what they said while coding):
+INTERVIEW TRANSCRIPT:
 ${transcript}
+
+IMPORTANT INSTRUCTIONS:
+- The transcript contains both "User:" (the candidate) and "AI:" (the interviewer) messages
+- ONLY evaluate the candidate's responses (lines starting with "User:")
+- IGNORE all AI interviewer messages (lines starting with "AI:")
+- Focus your feedback ENTIRELY on what the candidate said and their code
+- The candidate's verbal explanation and code are what matter for scoring
 
 Please provide detailed, constructive feedback in this EXACT format:
 
